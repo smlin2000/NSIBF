@@ -2,7 +2,7 @@
 
 import numpy as np
 import sys
-sys.path.append(r'C:/Users/rossm/Documents/GitHub/NSIBF')
+sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf')
 from framework.models import NSIBF
 from framework.preprocessing.data_loader import load_wadi_data
 from framework.HPOptimizer.Hyperparameter import UniformIntegerHyperparameter,ConstHyperparameter,\
@@ -70,7 +70,7 @@ if retrain_model:
     print('optHPCfg',optHPCfg)
     print('bestScore',bestScore)
 else:
-    kf = kf.load_model(r'/Users/rossm/Documents/GitHub/NSIBF/results/WADI')
+    kf = kf.load_model(r'/Users/rossm/Documents/GitHub/test_nsibf/results/WADI')
 
 scaler = None
 

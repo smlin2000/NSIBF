@@ -230,7 +230,6 @@ class NSIBF(BaseModel,DataExtractor):
         return z[0,:]
 
 
-    #state transition func calls f_net.predict (f net)
     def _state_transition_func(self,z,u):        
         U = np.array([u]*len(z))
         X = [z, U]
