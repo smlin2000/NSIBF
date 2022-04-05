@@ -1,0 +1,31 @@
+PS C:\Users\rossm\Documents\GitHub\NSIBFTEST> & C:/Users/rossm/AppData/Local/Programs/Python/Python38/python.exe c:/Users/rossm/Documents/GitHub/NSIBFTEST/experiments/WADI_experiment.py    
+2022-04-02 18:48:11.940634: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2022-04-02 18:48:11.940798: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2022-04-02 18:49:48.753979: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2022-04-02 18:49:48.756530: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cublas64_11.dll'; dlerror: cublas64_11.dll not found
+2022-04-02 18:49:48.758506: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cublasLt64_11.dll'; dlerror: cublasLt64_11.dll not found
+2022-04-02 18:49:48.760294: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cufft64_10.dll'; dlerror: cufft64_10.dll not found
+2022-04-02 18:49:48.761908: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'curand64_10.dll'; dlerror: curand64_10.dll not found
+2022-04-02 18:49:48.763412: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cusolver64_11.dll'; dlerror: cusolver64_11.dll not found
+2022-04-02 18:49:48.765119: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cusparse64_11.dll'; dlerror: cusparse64_11.dll not found
+2022-04-02 18:49:48.767576: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudnn64_8.dll'; dlerror: cudnn64_8.dll not found
+2022-04-02 18:49:48.767681: W tensorflow/core/common_runtime/gpu/gpu_device.cc:1850] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+2022-04-02 18:49:48.770852: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+   1_AIT_001_PV  1_AIT_002_PV  1_AIT_003_PV  1_AIT_004_PV  1_AIT_005_PV  ...  2_MV_601_STATUS=1  2_MV_601_STATUS=0  2_MV_601_STATUS=2  2_P_003_STATUS=2  2_P_003_STATUS=1
+0       161.470      0.667467       11.7655       491.640      0.357511  ...                  1                  0                  0                 0                 1
+1       161.470      0.667467       11.7629       491.662      0.357619  ...                  1                  0                  0                 0                 1
+2       161.473      0.655468       11.7615       491.707      0.357601  ...                  1                  0                  0                 0                 1
+3       161.473      0.655468       11.7615       491.707      0.357601  ...                  1                  0                  0                 0                 1
+4       161.472      0.643471       11.7618       491.724      0.357665  ...                  1                  0                  0                 0                 1
+5       161.478      0.649469       11.7591       491.747      0.357602  ...                  1                  0                  0                 0                 1
+6       161.482      0.661469       11.7603       491.763      0.357413  ...                  1                  0                  0                 0                 1
+7       161.483      0.643471       11.7624       491.791      0.357554  ...                  1                  0                  0                 0                 1
+8       161.491      0.631472       11.7656       491.831      0.357472  ...                  1                  0                  0                 0                 1
+9       161.487      0.661469       11.7640       491.859      0.357466  ...                  1                  0                  0                 0                 1
+
+[10 rows x 189 columns]
+
+
+#Using print(df.head(10))

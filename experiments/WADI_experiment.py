@@ -1,4 +1,8 @@
+#Code runs saved, trained NSIBF model on WADI dataset
+
 import numpy as np
+import sys
+sys.path.append(r'C:/Users/rossm/Documents/GitHub/NSIBF')
 from framework.models import NSIBF
 from framework.preprocessing.data_loader import load_wadi_data
 from framework.HPOptimizer.Hyperparameter import UniformIntegerHyperparameter,ConstHyperparameter,\
@@ -7,6 +11,7 @@ from framework.HPOptimizer import HPOptimizers
 from framework.preprocessing import normalize_and_encode_signals
 from framework.utils.metrics import bf_search
 from framework.utils import negative_sampler
+from framework.preprocessing.signals import DiscreteSignal,ContinousSignal
 import logging
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
@@ -17,7 +22,7 @@ seqL = 12
 kf = NSIBF(signals, window_length=seqL, input_range=seqL*3)
 
 
-train_df = normalize_and_encode_signals(train_df,signals,scaler='min_max') 
+train_df = normalize_and_encode_signals(train_df,signals,scaler='min_max')
 train_x,train_u,train_y,_ = kf.extract_data(train_df)
 x_train = [train_x,train_u]
 y_train = [train_x,train_y]
@@ -65,19 +70,96 @@ if retrain_model:
     print('optHPCfg',optHPCfg)
     print('bestScore',bestScore)
 else:
-    kf = kf.load_model('../results/WADI')
+    kf = kf.load_model(r'/Users/rossm/Documents/GitHub/NSIBF/results/WADI')
+
+scaler = None
+
+
+#normalize and encode signals code snippet
+#df = val_df.copy()
+#onehot_entries = {}
+#'onehot encoding and normalisation'
+#for signal in signals:
+#    if isinstance(signal, DiscreteSignal):
+#        onehot_entries[signal.name] = signal.get_onehot_feature_names()
+#        for value in signal.values:
+#            new_entry = signal.get_feature_name(value)
+#            df[new_entry] = 0
+#            df.loc[df[signal.name]==value,new_entry] = 1
+#    if isinstance(signal, ContinousSignal):
+#        df[signal.name] = df[signal.name].astype(float)
+#        if scaler == 'min_max':
+#            if signal.max_value is None or signal.min_value is None:
+#                print('please specify min max values for signal',signal.name)
+#            if signal.max_value != signal.min_value:
+#                df[signal.name]=df[signal.name].apply(lambda x:float(x-signal.min_value)/float(signal.max_value-signal.min_value))
+#        elif scaler == 'standard':
+#            if signal.mean_value is None or signal.std_value is None:
+#                print('please specify mean and std values for signal',signal.name)
+#            if signal.std_value != 0:
+#                df[signal.name]=df[signal.name].apply(lambda x:float(x-signal.mean_value)/float(signal.std_value))
+#print(df.head(10))
 
 val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max') 
+
+#"_" underscore variable used to ignore the value returned for that slot from the function (in this case z = z_feats from val dataframe)
 val_x,val_u,val_y,_ = kf.extract_data(val_df)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#df = test_df.copy()
+#onehot_entries = {}
+#'onehot encoding and normalisation'
+#for signal in signals:
+#    if isinstance(signal, DiscreteSignal):
+#        onehot_entries[signal.name] = signal.get_onehot_feature_names()
+#        for value in signal.values:
+#            new_entry = signal.get_feature_name(value)
+#            df[new_entry] = 0
+#            df.loc[df[signal.name]==value,new_entry] = 1
+#    if isinstance(signal, ContinousSignal):
+#        df[signal.name] = df[signal.name].astype(float)
+#        if scaler == 'min_max':
+#            if signal.max_value is None or signal.min_value is None:
+#                print('please specify min max values for signal',signal.name)
+#            if signal.max_value != signal.min_value:
+#                df[signal.name]=df[signal.name].apply(lambda x:float(x-signal.min_value)/float(signal.max_value-signal.min_value))
+#        elif scaler == 'standard':
+#            if signal.mean_value is None or signal.std_value is None:
+#                print('please specify mean and std values for signal',signal.name)
+#            if signal.std_value != 0:
+#                df[signal.name]=df[signal.name].apply(lambda x:float(x-signal.mean_value)/float(signal.std_value))
+#print(df.head(10))
+
 test_df = normalize_and_encode_signals(test_df,signals,scaler='min_max')
+
+
+#test_x and test_u initialized, passed in later to score_samples
 test_x,test_u,_,labels = kf.extract_data(test_df,purpose='AD',freq=seqL,label='label')
+
 labels = labels.sum(axis=1)
 labels[labels>0]=1
 
 kf.estimate_noise(val_x,val_u,val_y)
 
+
+#X/Y score_samples found in NSIBF.py
 z_scores = kf.score_samples(test_x, test_u,reset_hidden_states=True)
+
+
+
 # np.savetxt('../results/WADI/NSIBF_sores',z_scores)
 # z_scores = np.loadtxt('../results/WADI/NSIBF_sores')
 recon_scores,pred_scores = kf.score_samples_via_residual_error(test_x,test_u)
@@ -118,9 +200,6 @@ print('TP', t[3])
 print('TN', t[4])
 print('FP', t[5])
 print('FN', t[6])
-        
-
-   
 
 
         

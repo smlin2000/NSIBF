@@ -1,4 +1,8 @@
+#Code runs saved, trained NSIBF model on PUMP dataset
+
 import numpy as np
+import sys
+sys.path.append(r'C:/Users/rossm/Documents/GitHub/NSIBF')
 from framework.models import NSIBF
 from framework.preprocessing.data_loader import load_pump_data
 from framework.HPOptimizer.Hyperparameter import UniformIntegerHyperparameter,ConstHyperparameter,\
@@ -7,8 +11,10 @@ from framework.HPOptimizer import HPOptimizers
 from framework.preprocessing import normalize_and_encode_signals
 from framework.utils.metrics import bf_search
 from framework.utils import negative_sampler
+import sys
 import logging
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
+
 
 
 train_df,val_df,test_df,signals = load_pump_data()
@@ -65,7 +71,7 @@ if retrain_model:
     print('optHPCfg',optHPCfg)
     print('bestScore',bestScore)
 else: ## load pretrained model
-    kf = kf.load_model('../results/PUMP')
+    kf = kf.load_model(r'C:/Users/rossm/Documents/GitHub/NSIBF/results/PUMP')
 
 val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max') 
 val_x,val_u,val_y,_ = kf.extract_data(val_df)

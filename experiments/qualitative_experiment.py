@@ -1,4 +1,8 @@
+#This code compiles results saved from running all 3 experiments into visual representation via graphs
+
 import numpy as np
+import sys
+sys.path.append(r'C:/Users/rossm/Documents/GitHub/NSIBF')
 from framework.preprocessing.data_loader import get_simulation_data
 from framework.models import NSIBF
 from sklearn import metrics
@@ -35,7 +39,7 @@ val_y = y[pos:,:]
 #          epochs=50, validation_split=0.1, save_best_only=True, verbose=2)
 # kf.save_model('../results/qualitative')
    
-kf = kf.load_model('../results/qualitative')
+kf = kf.load_model(r'/Users/rossm/Documents/GitHub/NSIBF/results/qualitative')
 kf.estimate_noise(val_x,val_u,val_y)
 
 test_df = normalize_and_encode_signals(test_df,signals,scaler='min_max')

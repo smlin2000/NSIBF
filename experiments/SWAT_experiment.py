@@ -1,4 +1,8 @@
+#Code runs saved, trained NSIBF model on SWAT dataset
+
 import numpy as np
+import sys
+sys.path.append(r'C:/Users/rossm/Documents/GitHub/NSIBF')
 from framework.models import NSIBF
 from framework.preprocessing.data_loader import load_swat_data
 from framework.HPOptimizer.Hyperparameter import UniformIntegerHyperparameter,ConstHyperparameter,\
@@ -63,7 +67,7 @@ if retrain_model:
     print('optHPCfg',optHPCfg)
     print('bestScore',bestScore)
 else:
-    kf = kf.load_model('../results/SWAT')
+    kf = kf.load_model(r'/Users/rossm/Documents/GitHub/NSIBF/results/SWAT')
 
 
 val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max') 
