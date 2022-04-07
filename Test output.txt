@@ -1,0 +1,137 @@
+PS C:\Users\rossm\Documents\GitHub\test_nsibf> & C:/Users/rossm/AppData/Local/Programs/Python/Python38/python.exe c:/Users/rossm/Documents/GitHub/test_nsibf/experiments/WADI_experiment.py
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D7EB7FFA0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D7EB7FFD0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D7EB7FA30>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E460>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E5B0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E430>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E3D0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E610>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E640>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E6A0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E700>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E760>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E7C0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E820>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E880>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E8E0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E940>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083E9A0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EA00>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EA60>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EAC0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EB20>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EB80>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EBE0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EC40>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083ECA0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083ED00>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083ED60>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EDC0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EE20>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EE80>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EEE0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EF40>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D0083EFA0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000040>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000000A0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000100>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000160>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000001C0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000220>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000280>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000002E0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000340>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000003A0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000400>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000460>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000004C0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000520>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000580>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000005E0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000640>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000006A0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000700>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000760>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000007C0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000820>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000880>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000008E0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000940>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D000009A0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000A00>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000A60>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000AC0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000B20>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000BB0>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000C10>
+<framework.preprocessing.signals.ContinousSignal object at 0x0000025D00000C70>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000CD0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000D30>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000D90>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000DF0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000E50>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000EB0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000F10>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000F70>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D00000FD0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A070>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A0D0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A130>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A190>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A1F0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A250>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A2B0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A310>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A370>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A3D0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A430>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A490>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A4F0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A550>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A5B0>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A610>
+<framework.preprocessing.signals.DiscreteSignal object at 0x0000025D0000A670>
+2022-04-07 00:18:58.909072: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudnn64_8.dll'; dlerror: cudnn64_8.dll not found
+2022-04-07 00:18:58.909769: W tensorflow/core/common_runtime/gpu/gpu_device.cc:1850] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.       
+Skipping registering GPU devices...
+2022-04-07 00:18:58.912041: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.1 / 1306
+u_t [7.66222919e-01 2.57116912e-01 9.84935184e-01 9.16340790e-01
+ 5.75660746e-01 2.32865522e-04 4.83633523e-01 9.14053021e-01
+ 3.04267866e-01 7.13405652e-02 2.61904762e-01 6.56024146e-01
+ 9.87518407e-02 4.54545455e-02 1.00000000e+00 9.25517359e-03
+ 8.69565217e-02 1.80043256e-01 5.22591635e-02 2.32558140e-02
+ 1.00000000e+00 1.02278855e-02 1.88679245e-02 1.00000000e+00
+ 1.07985383e-02 1.59090909e-01 0.00000000e+00 5.30424809e-01
+ 0.00000000e+00 7.26068930e-02 1.00005550e-01 9.63275678e-03
+ 5.12484930e-02 1.02278855e-02 1.09407943e-02 4.43403668e-01
+ 9.08884255e-01 0.00000000e+00 0.00000000e+00 2.00685000e-01
+ 0.00000000e+00 6.86983000e-01 3.56947000e-01 1.94320521e-03
+ 8.75413003e-01 1.00000000e+00 3.93069512e-03 7.18243191e-01
+ 8.97349673e-01 3.93248959e-03 1.42072956e-01 9.22774503e-42
+ 7.33331378e-01 3.69797727e-01 3.75008889e-01 1.66858869e-02
+ 9.31957636e-01 2.88193852e-01 0.00000000e+00 9.97968888e-01
+ 2.14495569e-01 4.65656364e-01 5.98667043e-01 5.40810091e-01
+ 7.12395997e-02 1.69051556e-01 1.72566372e-01 1.00000000e+00
+ 0.00000000e+00 0.00000000e+00 1.00000000e+00 0.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 1.00000000e+00
+ 0.00000000e+00 0.00000000e+00 1.00000000e+00 1.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 1.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 1.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 1.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 1.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 1.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 1.00000000e+00 0.00000000e+00 0.00000000e+00
+ 1.00000000e+00 1.00000000e+00 0.00000000e+00 0.00000000e+00
+ 1.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
+ 0.00000000e+00 1.00000000e+00 1.00000000e+00 0.00000000e+00
+ 0.00000000e+00 0.00000000e+00 0.00000000e+00 1.00000000e+00
+ 0.00000000e+00 0.00000000e+00 1.00000000e+00 0.00000000e+00
+ 1.00000000e+00]
+x_t 0.7661715917521733
+x_mu 0.757459779580444
+
+z_score 22.159032912777967
+PS C:\Users\rossm\Documents\GitHub\test_nsibf>

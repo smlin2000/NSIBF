@@ -264,7 +264,7 @@ class NSIBF(BaseModel,DataExtractor):
 #state transition func at line 233
         sigmas_f = self._state_transition_func(sigmas,u_t)
         z_hat, P_hat = unscented_transform(sigmas_f,points.Wm,points.Wc,self.Q)
-        print('z_predict=',z_hat,'P_predict=',P_hat)
+        #print('z_predict=',z_hat,'P_predict=',P_hat)
         
 
 
