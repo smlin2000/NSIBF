@@ -392,6 +392,7 @@ class NSIBF(BaseModel,DataExtractor):
                                                           hnet_hidden_layers, fnet_hidden_layers, 
                                                           fnet_hidden_dim, uencoding_layers,uencoding_dim,
                                                           z_activation,l2)
+                                                          
         model.compile(optimizer=optimizer, loss=['mse','mse','mse'], loss_weights=self.loss_weights)
 
         if save_best_only:
