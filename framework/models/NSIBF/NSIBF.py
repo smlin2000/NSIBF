@@ -311,8 +311,18 @@ class NSIBF(BaseModel,DataExtractor):
             self.P = np.diag([0.00001]*len(self.z))
         
         mu_x_list, cov_x_list = [],[]
-        for t in range(1,len(x)):
-            print(t,'/',len(x))
+        #for t in range(1,len(x)):
+        #    print(t,'/',len(x))
+        #    u_t = u[t-1,:,:]
+        #    x_t = x[t,:]
+        #    
+        #    x_hat,Px_hat = self._bayes_update(x_t, u_t)
+        #    
+        #    mu_x_list.append(x_hat)
+        #    cov_x_list.append(Px_hat)
+
+        for t in range(1,1000):
+            print(t,'/',1000)
             u_t = u[t-1,:,:]
             x_t = x[t,:]
             

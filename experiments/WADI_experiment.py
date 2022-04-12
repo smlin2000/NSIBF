@@ -1,5 +1,5 @@
 #Code runs saved, trained NSIBF model on WADI dataset
-
+import matplotlib.pyplot as plt
 import numpy as np
 import sys
 sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf')
@@ -28,7 +28,10 @@ train_df = normalize_and_encode_signals(train_df,signals,scaler='min_max')
 train_x,train_u,train_y,_ = kf.extract_data(train_df)
 x_train = [train_x,train_u]
 y_train = [train_x,train_y]
-
+pos = len(train_x)*3//4
+valtest_x = train_x[pos:,:]
+valtest_u = train_u[pos:,:]
+valtest_y = train_y[pos:,:]
 
 #set retrain to False to reproduce the results in the paper
 retrain_model = False
@@ -73,7 +76,7 @@ if retrain_model:
     print('bestScore',bestScore)
 else:
     kf = kf.load_model(r'/Users/rossm/Documents/GitHub/test_nsibf/results/WADI')
-
+kf.estimate_noise(valtest_x,valtest_u,valtest_y)
 scaler = None
 
 
@@ -102,18 +105,19 @@ scaler = None
 #                df[signal.name]=df[signal.name].apply(lambda x:float(x-signal.mean_value)/float(signal.std_value))
 #print(df.head(10))
 
+
+
+
+
 val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max') 
 
 #"_" underscore variable used to ignore the value returned for that slot from the function (in this case z = z_feats from val dataframe)
 val_x,val_u,val_y,_ = kf.extract_data(val_df)
 
+T = np.linspace(1,len(val_x),len(val_x))
 
-
-
-
-
-
-
+plt.plot(T[0:1306],val_x[0:1306],linestyle='-',label='Observed measurements')
+plt.show()
 
 
 
@@ -145,16 +149,37 @@ val_x,val_u,val_y,_ = kf.extract_data(val_df)
 #                df[signal.name]=df[signal.name].apply(lambda x:float(x-signal.mean_value)/float(signal.std_value))
 #print(df.head(10))
 
+
+
+
+
 test_df = normalize_and_encode_signals(test_df,signals,scaler='min_max')
 
 
 #test_x and test_u initialized, passed in later to score_samples, y is ommitted from return, which is just a None value anyways
 test_x,test_u,_,labels = kf.extract_data(test_df,purpose='AD',freq=seqL,label='label')
+print(len(test_x))
+#length 1306
+
+
+x_mu,x_cov = kf.filter(test_x, test_u,reset_hidden_states=True)
+
+true_x = []
+
+for i in range(len(x_mu)):
+    for j in range(seqL):
+        true_x.append(test_x[i+1,j])
+
+T = np.linspace(1,len(true_x),len(true_x))
+
+plt.plot(T[0:1306],true_x[0:1306],linestyle='-',label='Observed measurements')
+plt.show()
+
 
 labels = labels.sum(axis=1)
 labels[labels>0]=1
 
-kf.estimate_noise(val_x,val_u,val_y)
+#kf.estimate_noise(val_x,val_u,val_y)
 
 if kf.Q is None or kf.R is None:
     print('please estimate noise before scoring samples!')
@@ -233,4 +258,3 @@ print('z_score', z_scores)
 #print('FN', t[6])
 
 
-        
