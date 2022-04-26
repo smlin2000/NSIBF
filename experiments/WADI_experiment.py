@@ -16,15 +16,24 @@ from framework.preprocessing.signals import DiscreteSignal,ContinousSignal
 import logging
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
-
 train_df,val_df,test_df,signals = load_wadi_data()
+
+
 
 seqL = 12
 kf = NSIBF(signals, window_length=seqL, input_range=seqL*3)
 
+print(train_df.isna())
+
+#row = test_df.iloc[5]
+#row.plot()
+#plt.show()
 
 #These lines of code don't matter until we need to retrain the model (recompile nsibf, f net, g net, and h net)
 train_df = normalize_and_encode_signals(train_df,signals,scaler='min_max')
+
+print(train_df.isna())
+
 train_x,train_u,train_y,_ = kf.extract_data(train_df)
 x_train = [train_x,train_u]
 y_train = [train_x,train_y]
@@ -116,7 +125,7 @@ val_x,val_u,val_y,_ = kf.extract_data(val_df)
 
 T = np.linspace(1,len(val_x),len(val_x))
 
-plt.plot(T[0:1306],val_x[0:1306],linestyle='-',label='Observed measurements')
+plt.plot(T[0:1306],val_x[0:1],linestyle='-',label='Observed measurements')
 plt.show()
 
 

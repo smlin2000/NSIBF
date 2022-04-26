@@ -123,8 +123,10 @@ def load_wadi_data():
         signals.append( DiscreteSignal(name, SignalSource.controller, isInput=True, isOutput=False, 
                                             values=train_df[name].unique()) )
     
-    
+    print(len(train_df))
+    # len(train_df)*3%4
     pos = len(train_df)*3//4
+    # pos = 181440
     val_df = train_df.loc[pos:,:]
     val_df = val_df.reset_index(drop=True)
     

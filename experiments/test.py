@@ -1,5 +1,3 @@
-#This code compiles results saved from running all 3 experiments into visual representation via graphs
-
 import numpy as np
 import sys
 sys.path.append(r'C:/Users/rossm/Documents/GitHub/NSIBF')
