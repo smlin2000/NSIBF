@@ -2,7 +2,7 @@ import numpy as np
 from ...preprocessing import ContinousSignal,DiscreteSignal
 from filterpy.kalman import unscented_transform,JulierSigmaPoints
 from tensorflow import keras
-from tensorflow.keras import layers
+from tensorflow.python.keras import layers
 import tempfile
 from scipy.linalg import cholesky
 from ..base import BaseModel,DataExtractor,override
@@ -24,6 +24,7 @@ class NSIBF(BaseModel,DataExtractor):
         self.wl = window_length
         self.input_range = input_range
         
+        #self.targets is continuous signal
         self.targets = []
         self.covariates = []
         for signal in self.signals:

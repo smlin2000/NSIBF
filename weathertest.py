@@ -69,6 +69,7 @@ val_df = df[int(n*0.7):int(n*0.9)]
 test_df = df[int(n*0.9):]
 
 num_features = df.shape[1]
+print("Num_features" + str(num_features))
 
 train_mean = train_df.mean()
 train_std = train_df.std()

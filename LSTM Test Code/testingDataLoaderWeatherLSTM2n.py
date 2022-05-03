@@ -7,84 +7,103 @@ import IPython
 import IPython.display
 import numpy as np
 import tensorflow as tf
+import tensorflow.python.keras
 sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf')
-from testDataLoader import load_dataset, drop_columns
+from testDataLoader import *
+
+from framework.models import NSIBF
+from framework.preprocessing.data_loader import load_wadi_data
+from framework.preprocessing import normalize_and_encode_signals
+import logging
+logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 test_dataset_path = r'/Users/rossm/Documents/GitHub/NSIBF/datasets/WADI/WADI_test.zip'
 train_dataset_path = r'/Users/rossm/Documents/GitHub/NSIBF/datasets/WADI/WADI_train.zip'
 
-mpl.rcParams['figure.figsize'] = (8, 6)
-mpl.rcParams['axes.grid'] = False
+#train_df,val_df,test_df,signals = load_wadi_data()
 
-UP_test_df = load_dataset(test_dataset_path)
-UP_train_df = load_dataset(train_dataset_path)
+test_df = load_dataset(test_dataset_path)
+train_df, val_df = load_dataset(train_dataset_path, True)
 
-#UP_dataframes = [UP_test_df, UP_train_df]
+num_features = train_df.shape[1]
 
-#UP_df = pd.concat(UP_dataframes)
+print(num_features)
 
-#print(UP_test_df.columns)
-#print(UP_train_df.columns)
+print(test_df.shape[1])
 
-#counter = 0
+train_df, val_df, test_df = drop_columns(train_df, val_df, test_df)
 
-#for i in UP_test_df.index:
-#    if counter == 400:
-#        break
-#    print('Row # ' + str(i) + " = " + str(UP_test_df['2_FIT_002_PV'][i]))
-#    counter += 1
+#df_to_csv(train_df, val_df, test_df)
+#print("Before normalization:")
 
-test_df, train_df = drop_columns(UP_test_df, UP_train_df)
+#print(train_df.head(10))
+#print(val_df.head(10))
+#print(test_df.head(10))
+print("==============================================")
+train_df = normalize_data(train_df)
 
-dataframes = [test_df, train_df]
+val_df = normalize_data(val_df)
 
-df = pd.concat(dataframes)
+test_df = normalize_data(test_df)
+#test_df = normalize_and_encode_signals(test_df,signals,scaler='min_max')
+#print("\nAfter normalization:")
+#print(train_df.head(10))
+#print(val_df.head(10))
+#print(test_df.head(10))
+print("==============================================")
 
-df = df.loc[:, :'2A_AIT_004_PV']
+#train_df = train_df.loc[:, :'2_MCV_301_CO']
 #
-test_df = test_df.loc[:, :'2A_AIT_004_PV']
+#val_df = val_df.loc[:, :'2_MCV_301_CO']
 #
-train_df = train_df.loc[:, :'2A_AIT_004_PV']
+#test_df = test_df.loc[:, :'2_MCV_301_CO']
 
-n = len(df)
-train_df = df[0:int(n*0.7)]
-val_df = df[int(n*0.7):int(n*0.9)]
-test_df = df[int(n*0.9):]
+print(train_df.shape[1])
+print(val_df.shape[1]) 
+print(test_df.shape[1])
+#print(train_df.head(10))
+#print(val_df.head(10))
+#print(test_df.head(10))
 
-print(train_df, val_df, test_df)
+#print(train_df.describe())
+#train_df = train_df.loc[:99,:]
+#print(train_df.describe())
 
-num_features = df.shape[1]
+#print(train_df.shape[1])
+#print(train_df.shape[1])
 
-#num_features_train = train_df.shape[1]
-#
-#num_features_test = test_df.shape[1]
+batch_size = train_df.shape[0]
+num_features = train_df.shape[1]
+#num_samples = 1
 
-#print(test_df.columns)
-#
-#print(test_df.isnull().values.any())
+train_data = train_df.copy()
+train_data = np.array(train_data, dtype=np.float32)
+train_ds = tf.keras.utils.timeseries_dataset_from_array(
+          data=train_data, targets=None, sequence_length = 100,
+          sequence_stride = 1, shuffle = True, batch_size = 1
+)
 
-train_mean = train_df.mean()
-train_std = train_df.std()
+val_data = val_df.copy()
+val_data = np.array(val_data, dtype=np.float32)
+val_ds = tf.keras.utils.timeseries_dataset_from_array(
+          data=val_data, targets=None, sequence_length = 100,
+          sequence_stride = 1, shuffle = True, batch_size = 1
+)
 
-train_df = (train_df - train_mean) / train_std
-#val_df = (val_df - train_mean) / train_std
-test_df = (test_df - train_mean) / train_std
-
-#df_std = (df - train_mean) / train_std
-#df_std = df_std.melt(var_name='Column', value_name='Normalized')
-#plt.figure(figsize=(12, 6))
-#ax = sns.violinplot(x='Column', y='Normalized', data=df_std)
-#_ = ax.set_xticklabels(df.keys(), rotation=90)
-
-#plt.show()
+test_data = test_df.copy()
+test_data = np.array(test_data, dtype=np.float32)
+test_ds = tf.keras.utils.timeseries_dataset_from_array(
+          data=test_data, targets=None, sequence_length = 100,
+          sequence_stride = 1, shuffle = True, batch_size = 1
+)
 
 class WindowGenerator():
   def __init__(self, input_width, label_width, shift,
-               train_df=train_df, test_df=test_df,
+               train_df=train_df, val_df=val_df, test_df=test_df,
                label_columns=None):
     # Store the raw data.
     self.train_df = train_df
-    #self.val_df = val_df
+    self.val_df = val_df
     self.test_df = test_df
 
     # Work out the label column indices.
@@ -208,6 +227,7 @@ def example(self):
 
 WindowGenerator.train = train
 WindowGenerator.test = test
+WindowGenerator.val = val
 WindowGenerator.example = example
 
 
@@ -223,6 +243,7 @@ def compile_and_fit(model, window, patience=2):
                 metrics=[tf.metrics.MeanAbsoluteError()])
 
   history = model.fit(window.train, epochs=MAX_EPOCHS,
+                      validation_data=window.val,
                       callbacks=[early_stopping])
   return history
 
@@ -231,28 +252,65 @@ multi_window = WindowGenerator(input_width=24,
                                label_width=OUT_STEPS,
                                shift=OUT_STEPS)
 
-multi_window.plot()
+class FeedBack(tf.keras.Model):
+  def __init__(self, units, out_steps):
+    super().__init__()
+    self.out_steps = out_steps
+    self.units = units
+    self.lstm_cell = tf.keras.layers.LSTMCell(units)
+    # Also wrap the LSTMCell in an RNN to simplify the `warmup` method.
+    self.lstm_rnn = tf.keras.layers.RNN(self.lstm_cell, return_state=True)
+    self.dense = tf.keras.layers.Dense(num_features)
 
-multi_lstm_model = tf.keras.Sequential([
-    # Shape [batch, time, features] => [batch, lstm_units].
-    # Adding more `lstm_units` just overfits more quickly.
-    tf.keras.layers.LSTM(32, return_sequences=False),
-    # Shape => [batch, out_steps*features].
-    tf.keras.layers.Dense(OUT_STEPS*num_features,
-                          kernel_initializer=tf.initializers.zeros()),
-    # Shape => [batch, out_steps, features].
-    tf.keras.layers.Reshape([OUT_STEPS, num_features])
-])
+feedback_model = FeedBack(units=32, out_steps=OUT_STEPS)
 
-history = compile_and_fit(multi_lstm_model, multi_window)
+def warmup(self, inputs):
+  # inputs.shape => (batch, time, features)
+  # x.shape => (batch, lstm_units)
+  x, *state = self.lstm_rnn(inputs)
+
+  # predictions.shape => (batch, features)
+  prediction = self.dense(x)
+  return prediction, state
+
+FeedBack.warmup = warmup
+
+
+def call(self, inputs, training=None):
+  # Use a TensorArray to capture dynamically unrolled outputs.
+  predictions = []
+  # Initialize the LSTM state.
+  prediction, state = self.warmup(inputs)
+
+  # Insert the first prediction.
+  predictions.append(prediction)
+
+  # Run the rest of the prediction steps.
+  for n in range(1, self.out_steps):
+    # Use the last prediction as input.
+    x = prediction
+    # Execute one lstm step.
+    x, state = self.lstm_cell(x, states=state,
+                              training=training)
+    # Convert the lstm output to a prediction.
+    prediction = self.dense(x)
+    # Add the prediction to the output.
+    predictions.append(prediction)
+
+  # predictions.shape => (time, batch, features)
+  predictions = tf.stack(predictions)
+  # predictions.shape => (batch, time, features)
+  predictions = tf.transpose(predictions, [1, 0, 2])
+  return predictions
+
+FeedBack.call = call
+
+history = compile_and_fit(feedback_model, multi_window)
 
 IPython.display.clear_output()
-
 multi_val_performance = {}
 multi_performance = {}
-
-
-multi_val_performance['LSTM'] = multi_lstm_model.evaluate(multi_window.train)
-multi_performance['LSTM'] = multi_lstm_model.evaluate(multi_window.test, verbose=0)
-multi_window.plot(multi_lstm_model)
+multi_val_performance['AR LSTM'] = feedback_model.evaluate(multi_window.val)
+multi_performance['AR LSTM'] = feedback_model.evaluate(multi_window.test, verbose=0)
+multi_window.plot(feedback_model)
 plt.show()

@@ -18,12 +18,14 @@ logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
 train_df,val_df,test_df,signals = load_wadi_data()
 
+print(test_df['3_AIT_002_PV'])
 
 
 seqL = 12
+#input range = 36
 kf = NSIBF(signals, window_length=seqL, input_range=seqL*3)
 
-print(train_df.isna())
+#print(train_df.isna())
 
 #row = test_df.iloc[5]
 #row.plot()
@@ -32,15 +34,18 @@ print(train_df.isna())
 #These lines of code don't matter until we need to retrain the model (recompile nsibf, f net, g net, and h net)
 train_df = normalize_and_encode_signals(train_df,signals,scaler='min_max')
 
-print(train_df.isna())
+#print(train_df.isna())
 
 train_x,train_u,train_y,_ = kf.extract_data(train_df)
+print(train_x)
+print(train_u)
+print(train_y)
 x_train = [train_x,train_u]
 y_train = [train_x,train_y]
-pos = len(train_x)*3//4
-valtest_x = train_x[pos:,:]
-valtest_u = train_u[pos:,:]
-valtest_y = train_y[pos:,:]
+#pos = len(train_x)*3//4
+#valtest_x = train_x[pos:,:]
+#valtest_u = train_u[pos:,:]
+#valtest_y = train_y[pos:,:]
 
 #set retrain to False to reproduce the results in the paper
 retrain_model = False
@@ -85,7 +90,11 @@ if retrain_model:
     print('bestScore',bestScore)
 else:
     kf = kf.load_model(r'/Users/rossm/Documents/GitHub/test_nsibf/results/WADI')
-kf.estimate_noise(valtest_x,valtest_u,valtest_y)
+#kf.estimate_noise(valtest_x,valtest_u,valtest_y)
+#kf.estimator.summary()
+#kf.g_net.summary()
+#kf.h_net.summary()
+#kf.f_net.summary()
 scaler = None
 
 
@@ -123,10 +132,10 @@ val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max')
 #"_" underscore variable used to ignore the value returned for that slot from the function (in this case z = z_feats from val dataframe)
 val_x,val_u,val_y,_ = kf.extract_data(val_df)
 
-T = np.linspace(1,len(val_x),len(val_x))
-
-plt.plot(T[0:1306],val_x[0:1],linestyle='-',label='Observed measurements')
-plt.show()
+#T = np.linspace(1,len(val_x),len(val_x))
+#
+#plt.plot(T[0:1306],val_x[0:1],linestyle='-',label='Observed measurements')
+#plt.show()
 
 
 
@@ -163,7 +172,7 @@ plt.show()
 
 
 test_df = normalize_and_encode_signals(test_df,signals,scaler='min_max')
-
+print(test_df['3_AIT_002_PV'])
 
 #test_x and test_u initialized, passed in later to score_samples, y is ommitted from return, which is just a None value anyways
 test_x,test_u,_,labels = kf.extract_data(test_df,purpose='AD',freq=seqL,label='label')
@@ -171,18 +180,18 @@ print(len(test_x))
 #length 1306
 
 
-x_mu,x_cov = kf.filter(test_x, test_u,reset_hidden_states=True)
+#x_mu,x_cov = kf.filter(test_x, test_u,reset_hidden_states=True)
+#
+#true_x = []
+#
+#for i in range(len(x_mu)):
+#    for j in range(seqL):
+#        true_x.append(test_x[i+1,j])
+#
+#T = np.linspace(1,len(true_x),len(true_x))
 
-true_x = []
-
-for i in range(len(x_mu)):
-    for j in range(seqL):
-        true_x.append(test_x[i+1,j])
-
-T = np.linspace(1,len(true_x),len(true_x))
-
-plt.plot(T[0:1306],true_x[0:1306],linestyle='-',label='Observed measurements')
-plt.show()
+#plt.plot(T[0:1306],true_x[0:1306],linestyle='-',label='Observed measurements')
+#plt.show()
 
 
 labels = labels.sum(axis=1)
@@ -206,16 +215,16 @@ x_t = test_x[t,:]
 print("u_t", u_t[t])
 print("x_t", x_t[t])
 
-x_mu,x_cov = kf._bayes_update(x_t, u_t)
-print("x_mu", x_mu[t])
+#x_mu,x_cov = kf._bayes_update(x_t, u_t)
+#print("x_mu", x_mu[t])
 #print("x_cov", x_cov[t])
 
-inv_cov = np.linalg.inv(x_cov)
+#inv_cov = np.linalg.inv(x_cov)
 #print("inv_x_cov", inv_cov)
 
-score = mahalanobis(test_x[t,:], x_mu, inv_cov)
-anomaly_scores.append(score)
-np.savetxt('/Users/rossm/Documents/GitHub/test_nsibf/results/WADI/NSIBF_sores',anomaly_scores)
+#score = mahalanobis(test_x[t,:], x_mu, inv_cov)
+#anomaly_scores.append(score)
+#np.savetxt('/Users/rossm/Documents/GitHub/test_nsibf/results/WADI/NSIBF_sores',anomaly_scores)
 
 
 #X/Y score_samples found in NSIBF.py
@@ -224,14 +233,14 @@ np.savetxt('/Users/rossm/Documents/GitHub/test_nsibf/results/WADI/NSIBF_sores',a
 
 
 # np.savetxt('../results/WADI/NSIBF_sores',z_scores)
-z_scores = np.loadtxt('/Users/rossm/Documents/GitHub/test_nsibf/results/WADI/NSIBF_sores')
-recon_scores,pred_scores = kf.score_samples_via_residual_error(test_x,test_u)
-print()
+#z_scores = np.loadtxt('/Users/rossm/Documents/GitHub/test_nsibf/results/WADI/NSIBF_sores')
+#recon_scores,pred_scores = kf.score_samples_via_residual_error(test_x,test_u)
+#print()
 
 
-z_scores = np.nan_to_num(z_scores)
+#z_scores = np.nan_to_num(z_scores)
 #t, th = bf_search(z_scores, labels[1:],start=0,end=np.percentile(z_scores,99.9),step_num=10000,display_freq=50,verbose=False)
-print('z_score', z_scores)
+#print('z_score', z_scores)
 #print('NSIBF')
 #print('best-f1', t[0])
 #print('precision', t[1])

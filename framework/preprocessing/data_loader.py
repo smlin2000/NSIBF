@@ -132,7 +132,6 @@ def load_wadi_data():
     
     train_df = train_df.loc[:pos,:]
     train_df = train_df.reset_index(drop=True)
-    for name in signals: print(name)
     return train_df,val_df,test_df,signals
 
 def load_swat_data():
