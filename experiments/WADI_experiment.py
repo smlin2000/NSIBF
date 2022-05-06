@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sys
 sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf')
-from framework.models import NSIBF
+#from framework.models import NSIBF
+from EKF_UKF import NSIBF_ekf as NSIBF
 from framework.preprocessing.data_loader import load_wadi_data
 from framework.HPOptimizer.Hyperparameter import UniformIntegerHyperparameter,ConstHyperparameter,\
     UniformFloatHyperparameter

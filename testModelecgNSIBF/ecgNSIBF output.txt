@@ -1,0 +1,135 @@
+PS C:\Users\rossm\Documents\GitHub\test_nsibf> & C:/Users/rossm/AppData/Local/Programs/Python/Python38/python.exe c:/Users/rossm/Documents/GitHub/test_nsibf/LSTMTestCode/ecgNSIBF.py
+2022-05-06 02:12:13.878500: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cudart64_101.dll'; dlerror: cudart64_101.dll not found
+2022-05-06 02:12:13.878573: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2022-05-06 02:12:15.393323: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library nvcuda.dll
+2022-05-06 02:12:15.409130: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 0 with properties: 
+pciBusID: 0000:09:00.0 name: NVIDIA GeForce RTX 3070 computeCapability: 8.6
+coreClock: 1.77GHz coreCount: 46 deviceMemorySize: 8.00GiB deviceMemoryBandwidth: 417.29GiB/s
+2022-05-06 02:12:15.410118: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cudart64_101.dll'; dlerror: cudart64_101.dll not found
+2022-05-06 02:12:15.410967: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cublas64_10.dll'; dlerror: cublas64_10.dll not found
+2022-05-06 02:12:15.413478: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cufft64_10.dll
+2022-05-06 02:12:15.414407: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library curand64_10.dll
+2022-05-06 02:12:15.420812: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cusolver64_10.dll
+2022-05-06 02:12:15.421989: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cusparse64_10.dll'; dlerror: cusparse64_10.dll not found
+2022-05-06 02:12:15.422767: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cudnn64_7.dll'; dlerror: cudnn64_7.dll not found
+2022-05-06 02:12:15.422814: W tensorflow/core/common_runtime/gpu/gpu_device.cc:1753] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+2022-05-06 02:12:15.423130: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-05-06 02:12:15.428896: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x18a26f53a30 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2022-05-06 02:12:15.428951: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2022-05-06 02:12:15.429057: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1257] Device interconnect StreamExecutor with strength 1 edge matrix:
+2022-05-06 02:12:15.429099: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1263]      
+1 / 81
+2 / 81
+3 / 81
+4 / 81
+5 / 81
+6 / 81
+7 / 81
+8 / 81
+9 / 81
+10 / 81
+11 / 81
+12 / 81
+13 / 81
+14 / 81
+15 / 81
+16 / 81
+17 / 81
+18 / 81
+19 / 81
+20 / 81
+21 / 81
+22 / 81
+23 / 81
+24 / 81
+25 / 81
+26 / 81
+27 / 81
+28 / 81
+29 / 81
+30 / 81
+31 / 81
+32 / 81
+33 / 81
+C:\Users\rossm\AppData\Local\Programs\Python\Python38\lib\site-packages\scipy\spatial\distance.py:1084: RuntimeWarning: invalid value encountered in sqrt
+  return np.sqrt(m)
+34 / 81
+35 / 81
+36 / 81
+37 / 81
+38 / 81
+39 / 81
+40 / 81
+41 / 81
+42 / 81
+43 / 81
+44 / 81
+45 / 81
+46 / 81
+47 / 81
+48 / 81
+49 / 81
+50 / 81
+51 / 81
+52 / 81
+53 / 81
+54 / 81
+55 / 81
+56 / 81
+57 / 81
+58 / 81
+59 / 81
+60 / 81
+61 / 81
+62 / 81
+63 / 81
+64 / 81
+65 / 81
+66 / 81
+67 / 81
+68 / 81
+69 / 81
+70 / 81
+71 / 81
+72 / 81
+73 / 81
+74 / 81
+75 / 81
+76 / 81
+77 / 81
+78 / 81
+79 / 81
+80 / 81
+
+NSIBF
+best-f1 0.9999948750250155
+precision 0.9999998750000156
+recall 0.9999998750000156
+accuracy 1.0
+TP 80.0
+TN 0.0
+FP 0.0
+FN 0.0
+
+NSIBF-RECON
+best-f1 0.9999948750250155
+precision 0.9999998750000156
+recall 0.9999998750000156
+accuracy 1.0
+TP 80.0
+TN 0.0
+FP 0.0
+FN 0.0
+
+NSIBF-PRED
+best-f1 0.9999948750250155
+precision 0.9999998750000156
+recall 0.9999998750000156
+accuracy 1.0
+TP 80.0
+TN 0.0
+FP 0.0
+FN 0.0
+PS C:\Users\rossm\Documents\GitHub\test_nsibf> 

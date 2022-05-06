@@ -1,9 +1,12 @@
+import sys
+sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf/LSTMTestCode')
 import pandas as pd
 import numpy as np
 import random
 import math
 import zipfile
 from .signals import ContinousSignal,DiscreteSignal,SignalSource
+from LSTMTestCode.testDataLoader import *
 
 
 def _process_model(u, t, noise_std=0.1):
@@ -89,6 +92,9 @@ def load_wadi_data():
     train_df=train_df.fillna(method='ffill')
     test_df.loc[test_df['label']>=1,'label']=1
     test_df=test_df.fillna(method='ffill')
+
+    
+
     
     sensors = ['1_AIT_001_PV', '1_AIT_002_PV', '1_AIT_003_PV', '1_AIT_004_PV', 
                '1_AIT_005_PV', '1_FIT_001_PV', '1_LT_001_PV', '2_DPIT_001_PV', 
@@ -132,6 +138,11 @@ def load_wadi_data():
     
     train_df = train_df.loc[:pos,:]
     train_df = train_df.reset_index(drop=True)
+
+    #df_to_csv("loadWadiDataVal", val_df)
+    #df_to_csv("loadWadiDataTrain", train_df)
+
+
     return train_df,val_df,test_df,signals
 
 def load_swat_data():

@@ -257,7 +257,7 @@ class NSIBF(BaseModel,DataExtractor):
         'Prediction step'
         points = JulierSigmaPoints(n=len(self.z),kappa=3-len(self.z),sqrt_method=self._sqrt_func)
         sigmas = points.sigma_points(self.z, self.P)
-#         print(sigmas.shape)
+#       print(sigmas.shape)
 
 
 #Call f_net function in network architecture
