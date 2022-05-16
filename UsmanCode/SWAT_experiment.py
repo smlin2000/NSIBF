@@ -1,37 +1,25 @@
-#Code runs saved, trained NSIBF model on WADI dataset
-import matplotlib.pyplot as plt
 import numpy as np
-#import sys
-#sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf')
-#from framework.models import NSIBF
-import sys
-  
-# setting path
-sys.path.append(r'C:\Users\smlin\Documents\GitHub\NSIBF')
-from NSIBF_ekf import NSIBF
-from framework.preprocessing.data_loader import load_wadi_data
+from framework.models import NSIBF
+from framework.preprocessing.data_loader import load_swat_data
 from framework.HPOptimizer.Hyperparameter import UniformIntegerHyperparameter,ConstHyperparameter,\
     UniformFloatHyperparameter
 from framework.HPOptimizer import HPOptimizers
 from framework.preprocessing import normalize_and_encode_signals
 from framework.utils.metrics import bf_search
-from framework.utils import negative_sampler
-from scipy.spatial.distance import mahalanobis
-from framework.preprocessing.signals import DiscreteSignal,ContinousSignal
 import logging
+from framework.utils import negative_sampler
 logging.getLogger('tensorflow').setLevel(logging.ERROR)
 
-train_df,val_df,test_df,signals = load_wadi_data()
+
+train_df,val_df,test_df,signals = load_swat_data()
 
 seqL = 12
 kf = NSIBF(signals, window_length=seqL, input_range=seqL*3)
-
 
 train_df = normalize_and_encode_signals(train_df,signals,scaler='min_max') 
 train_x,train_u,train_y,_ = kf.extract_data(train_df)
 x_train = [train_x,train_u]
 y_train = [train_x,train_y]
-
 
 #set retrain to False to reproduce the results in the paper
 retrain_model = False
@@ -56,28 +44,29 @@ if retrain_model:
     y_neg = y
     
     hp_list = []
-    hp_list.append(UniformIntegerHyperparameter('z_dim',1,200)) 
-    hp_list.append(UniformIntegerHyperparameter('hnet_hidden_layers',1,3))
+    hp_list.append(UniformIntegerHyperparameter('z_dim',1,75)) 
+    hp_list.append(UniformIntegerHyperparameter('hnet_hidden_layers',1,3))  
     hp_list.append(UniformIntegerHyperparameter('fnet_hidden_layers',1,3))
     hp_list.append(UniformIntegerHyperparameter('fnet_hidden_dim',32,256))
     hp_list.append(UniformIntegerHyperparameter('uencoding_layers',1,3))
     hp_list.append(UniformIntegerHyperparameter('uencoding_dim',32,256))
     hp_list.append(UniformFloatHyperparameter('l2',0,0.05))
-    hp_list.append(ConstHyperparameter('epochs',50))
+    hp_list.append(ConstHyperparameter('epochs',25))
     hp_list.append(ConstHyperparameter('save_best_only',True))
     hp_list.append(ConstHyperparameter('validation_split',0.1))
-    hp_list.append(ConstHyperparameter('batch_size',256*16))
+    hp_list.append(ConstHyperparameter('batch_size',256*8))
     hp_list.append(ConstHyperparameter('verbose',2))
-    
+
     optor = HPOptimizers.RandomizedGS(kf, hp_list,x_train, y_train,x_neg,y_neg)
     kf,optHPCfg,bestScore = optor.run(n_searches=10,verbose=1)
-#     kf.save_model('../results/WADI')
+#     kf.save_model('../results/SWAT')
     print('optHPCfg',optHPCfg)
     print('bestScore',bestScore)
 else:
-    kf = kf.load_model(r'C:\Users\smlin\Documents\GitHub\NSIBF\results\WADI')
+    kf = kf.load_model(r'C:/Users/smlin/Documents/GitHub/NSIBF/results/SWAT')
 
-val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max')
+
+val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max') 
 val_x,val_u,val_y,_ = kf.extract_data(val_df)
 
 test_df = normalize_and_encode_signals(test_df,signals,scaler='min_max')
@@ -86,13 +75,13 @@ labels = labels.sum(axis=1)
 labels[labels>0]=1
 
 kf.estimate_noise(val_x,val_u,val_y)
-
-z_scores = kf.score_samples(test_x, test_u,reset_hidden_states=True)
-# np.savetxt('../results/WADI/NSIBF_sores',z_scores)
-# z_scores = np.loadtxt('../results/WADI/NSIBF_sores')
+ 
+z_scores, z_scores_ekf = kf.score_samples(test_x, test_u, reset_hidden_states=True)
+# np.savetxt('../results/SWAT/NSIBF_scores',z_scores)
+# z_scores = np.loadtxt('../results/SWAT/NSIBF_scores')
 recon_scores,pred_scores = kf.score_samples_via_residual_error(test_x,test_u)
 print()
-
+   
 z_scores = np.nan_to_num(z_scores)
 t, th = bf_search(z_scores, labels[1:],start=0,end=np.percentile(z_scores,99.9),step_num=10000,display_freq=50,verbose=False)
 print('NSIBF')
@@ -106,6 +95,19 @@ print('FP', t[5])
 print('FN', t[6])
 print()
 
+z_scores_ekf = np.nan_to_num(z_scores_ekf)
+t, th = bf_search(z_scores_ekf, labels[1:],start=0,end=np.percentile(z_scores,99.9),step_num=10000,display_freq=50,verbose=False)
+print('NSIBF_ekf')
+print('best-f1', t[0])
+print('precision', t[1])
+print('recall', t[2])
+print('accuracy',(t[3]+t[4])/(t[3]+t[4]+t[5]+t[6]))
+print('TP', t[3])
+print('TN', t[4])
+print('FP', t[5])
+print('FN', t[6])
+print()
+ 
 t, th = bf_search(recon_scores[1:], labels[1:],start=0,end=np.percentile(recon_scores,99.9),step_num=10000,display_freq=50,verbose=False)
 print('NSIBF-RECON')
 print('best-f1', t[0])
@@ -117,7 +119,7 @@ print('TN', t[4])
 print('FP', t[5])
 print('FN', t[6])
 print()
-
+ 
 t, th = bf_search(pred_scores, labels[1:],start=0,end=np.percentile(pred_scores,99.9),step_num=10000,display_freq=50,verbose=False)
 print('NSIBF-PRED')
 print('best-f1', t[0])
@@ -128,3 +130,4 @@ print('TP', t[3])
 print('TN', t[4])
 print('FP', t[5])
 print('FN', t[6])
+print()        

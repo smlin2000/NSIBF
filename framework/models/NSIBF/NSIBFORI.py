@@ -1,20 +1,13 @@
 import numpy as np
-import sys
-  
-# setting path
-sys.path.append(r'C:\Users\smlin\Documents\GitHub\NSIBF')
-from framework.preprocessing import ContinousSignal,DiscreteSignal
-from filterpy.kalman import unscented_transform, JulierSigmaPoints, MerweScaledSigmaPoints
-from filterpy.kalman import EnsembleKalmanFilter as EnKF
-from filterpy.kalman import UnscentedKalmanFilter as UKF
-from numpy.random import multivariate_normal
+from ...preprocessing import ContinousSignal,DiscreteSignal
+from filterpy.kalman import unscented_transform,JulierSigmaPoints
 from tensorflow import keras
-from tensorflow.keras import layers
+from tensorflow.python.keras import layers
 import tempfile
 from scipy.linalg import cholesky
-from framework.models.base import BaseModel,DataExtractor,override
-from framework.models.NSIBF import nearestPD, isPD
-from framework.utils.metrics import bf_search
+from ..base import BaseModel,DataExtractor,override
+from . import nearestPD
+from ...utils.metrics import bf_search
 from scipy.spatial.distance import mahalanobis
 
 
@@ -31,6 +24,7 @@ class NSIBF(BaseModel,DataExtractor):
         self.wl = window_length
         self.input_range = input_range
         
+        #self.targets is continuous signal
         self.targets = []
         self.covariates = []
         for signal in self.signals:
@@ -56,8 +50,6 @@ class NSIBF(BaseModel,DataExtractor):
         self.f_net = None
         'neural networks for state decoding, aka measurement function'
         self.h_net = None
-        'Sigma points'
-        self.sigmas = None
         
         self.loss_weights = [0.45,0.45,0.1]
     
@@ -163,6 +155,9 @@ class NSIBF(BaseModel,DataExtractor):
         pred_scores = np.mean(np.abs(x[:-1,:]-x_pred[1:,:]),axis=1)
 
         return recon_scores,pred_scores
+
+
+
     
     def score_samples(self, x, u, reset_hidden_states=True):
         """
@@ -179,29 +174,37 @@ class NSIBF(BaseModel,DataExtractor):
         if self.Q is None or self.R is None:
             print('please estimate noise before running this method!')
             return None
+
+        #x is test_x ditto u
         
         if reset_hidden_states:
             self.z = self._encoding(x[0,:])
             self.P = np.diag([0.00001]*len(self.z))
-            
-        sb = multivariate_normal(mean=self.z, cov=self.P, size=2*len(self.z)+1)
+        
+        #length of X loops
         anomaly_scores = []
         for t in range(1,len(x)):
+
+            #X/Y
             print(t,'/',len(x))
+            
             u_t = u[t-1,:,:]
             x_t = x[t,:]
             
-            
-            
-            x_mu,x_cov = self._bayes_update(x_t, u_t, sb)
+            x_mu,x_cov = self._bayes_update(x_t, u_t)
         
-            inv_cov = np.linalg.pinv(x_cov)
+            inv_cov = np.linalg.inv(x_cov)
             score = mahalanobis(x[t,:], x_mu, inv_cov)
             anomaly_scores.append(score)
         
         return np.array(anomaly_scores)
     
   
+
+
+
+
+
     def estimate_noise(self,x,u,y):
         """
         Estimate the sensor and process noise matrices from given data
@@ -219,17 +222,23 @@ class NSIBF(BaseModel,DataExtractor):
         x_pred = self.h_net.predict(s)
         self.R = np.cov(np.transpose(x_pred-x))
         return self
+
+
     
     def _encoding(self,x):
         x = np.array([x]).astype(np.float)
         z = self.g_net.predict(x)
         return z[0,:]
-        
+
+
     def _state_transition_func(self,z,u):        
         U = np.array([u]*len(z))
         X = [z, U]
         z_next = self.f_net.predict(X)
         return z_next 
+
+
+
     
     def _measurement_func(self,z):
         y = self.h_net.predict(z)
@@ -242,110 +251,43 @@ class NSIBF(BaseModel,DataExtractor):
             result = np.linalg.cholesky(nearestPD(x))
         return result
     
-    def _bayes_update(self,x_t,u_t,sb):
+    
+    def _bayes_update(self,x_t,u_t):
+
         'Prediction step'
-                
-        N = 2*len(self.z)+1
-        if self.sigmas is None:
-            self.sigmas = sb
-        sigmas = sb
-        #print(self.sigmas, 'sigmas init')
-        # print(self.P.shape)
-        sigmas_f = self._state_transition_func(self.sigmas,u_t)
-        #print(sigmas_f, 'sigmas f')
-        # q_err = multivariate_normal(np.zeros(self.z), self.Q, N)
-        # print(self.Q.shape)
-        # print(sigmas_f.shape)
-        z_hat = np.mean(sigmas_f,axis=0)
-        P_hat = 0
-        for s in sigmas_f:
-            sx = s - self.z
-            P_hat += np.outer(sx, sx)
-        P_hat = (P_hat + self.Q) / (N-1)
-                
+        points = JulierSigmaPoints(n=len(self.z),kappa=3-len(self.z),sqrt_method=self._sqrt_func)
+        sigmas = points.sigma_points(self.z, self.P)
+#       print(sigmas.shape)
+
+
+#Call f_net function in network architecture
+#Pass the selected sigma points through the 𝑓 net to generate a set of predicted state vectors at time 𝑡
+#state transition func at line 233
+        sigmas_f = self._state_transition_func(sigmas,u_t)
+        z_hat, P_hat = unscented_transform(sigmas_f,points.Wm,points.Wc,self.Q)
+        #print('z_predict=',z_hat,'P_predict=',P_hat)
+        
+
+
         'Update step'
         sigmas_h = self._measurement_func(sigmas_f)
-        print(sigmas_h, 'sigmas h')
-        x_hat = np.mean(sigmas_h,axis=0)  
-        P_zz = 0
-        for ss in sigmas_h:
-            s = ss - x_hat
-            P_zz += np.outer(s, s)
-        P_zz = (P_zz) / (N-1) + self.R
-        print(np.isnan(P_zz).any())
-        P_xz = 0
-        for i in range(N):
-            P_xz += np.outer(sigmas_f[i] - self.z, sigmas_h[i] - x_hat)
-        P_xz /= N-1
+#        print('sigmas_h',sigmas_h)
+        x_hat, Px_hat = unscented_transform(sigmas_h,points.Wm,points.Wc,self.R)
+#        print('x_predict=',x_hat)
+        Pxz = np.zeros((len(z_hat),len(x_hat)))
+        for i in range(len(sigmas)):
+            Pxz += points.Wc[i] * np.outer(sigmas_f[i]-z_hat,sigmas_h[i]-x_hat)
+        
         try:
-            K = np.dot(P_xz,np.linalg.inv(P_zz))
+            K = np.dot(Pxz,np.linalg.inv(Px_hat))
         except:
-            K = np.dot(P_xz,np.linalg.pinv(P_zz))
-        print(K, 'k')
-        # K = np.dot(P_xz,np.linalg.pinv(P_zz))
-        v_r = multivariate_normal([0]*len(x_t), np.eye(len(x_t)), len(x_t))
-        for i in range(N):
-            sigmas[i] += np.dot(K, x_t + v_r[i] - sigmas_h[i])
-        print(sigmas, 'sigmas update')
-        self.z = np.mean(self.sigmas, axis=0)
-        self.P = P_hat - K @ P_zz @ K.T
+            K = np.dot(Pxz,np.linalg.pinv(Px_hat))
+        self.z = z_hat + np.dot(K,x_t-x_hat)
+        self.P = P_hat - np.dot(K,Px_hat).dot(np.transpose(K))
         
-        # print(sigmas.shape)
-        # print(sigmas_h.shape)
-        # print(x_hat.shape)
-        # print(P_zz.shape)
-        # print(P_xz.shape)
-        # print(K.shape)
-        # print(v_r.shape)
-        # print(x_t.shape)
-        # print(u_t.shape)
-        # print(z_hat.shape)
-        # print(P_hat.shape)
-        # print(self.z.shape)
-        # print(self.P.shape)
-        
-        return x_hat, P_zz
-    
-   
-        # 'Prediction step'
-#         points = JulierSigmaPoints(n=len(self.z),kappa=3-len(self.z),sqrt_method=self._sqrt_func)
-#         # points = MerweScaledSigmaPoints(n=len(self.z),alpha=1e-3,beta=2,kappa=3-len(self.z),sqrt_method=self._sqrt_func)
-#         sigmas = points.sigma_points(self.z, self.P)
-        
-#         # sigmas = multivariate_normal(mean=self.z, cov=self.P, size=len(self.z))
-#         sigmas_f = self._state_transition_func(sigmas,u_t)
-#         z_hat, P_hat = unscented_transform(sigmas_f,points.Wm,points.Wc,self.Q)
-# #             print('z_predict=',z_hat,'P_predict=',P_hat)
-        
-        
-#         'Update step'
-#         sigmas_h = self._measurement_func(sigmas_f)
-# #             print('sigmas_h',sigmas_h)
-#         x_hat, Px_hat = unscented_transform(sigmas_h,points.Wm,points.Wc,self.R)
-# #             print('x_predict=',x_hat)        
-#         Pxz = np.zeros((len(z_hat),len(x_hat)))
-#         for i in range(len(sigmas)):
-#             Pxz += points.Wc[i] * np.outer(sigmas_f[i]-z_hat,sigmas_h[i]-x_hat)
-        
-#         try:
-#             K = np.dot(Pxz,np.linalg.inv(Px_hat))
-#         except:
-#             K = np.dot(Pxz,np.linalg.pinv(Px_hat))
-#         self.z = z_hat + np.dot(K,x_t-x_hat)
-#         self.P = P_hat - np.dot(K,Px_hat).dot(np.transpose(K))
-#         # print(x_hat, Px_hat)
-#         print(sigmas.shape)
-#         print(sigmas_h.shape)
-#         print(x_hat.shape)
-#         print(Px_hat.shape)
-#         print(Pxz.shape)
-#         print(K.shape)
-#         print(x_t.shape)
-#         print(u_t.shape)
-#         print(z_hat.shape)
-#         print(P_hat.shape)
-        
-#         return x_hat, Px_hat
+        return x_hat, Px_hat
+
+
     
     def filter(self,x,u,reset_hidden_states=True):
         """
@@ -368,20 +310,33 @@ class NSIBF(BaseModel,DataExtractor):
         if reset_hidden_states:
             self.z = self._encoding(x[0,:])
             self.P = np.diag([0.00001]*len(self.z))
-        sb = multivariate_normal(mean=self.z, cov=self.P, size=2*len(self.z)+1)
+        
         mu_x_list, cov_x_list = [],[]
-        for t in range(1,len(x)):
-            print(t,'/',len(x))
+        #for t in range(1,len(x)):
+        #    print(t,'/',len(x))
+        #    u_t = u[t-1,:,:]
+        #    x_t = x[t,:]
+        #    
+        #    x_hat,Px_hat = self._bayes_update(x_t, u_t)
+        #    
+        #    mu_x_list.append(x_hat)
+        #    cov_x_list.append(Px_hat)
+
+        for t in range(1,1000):
+            print(t,'/',1000)
             u_t = u[t-1,:,:]
             x_t = x[t,:]
-                      
             
-            x_hat,Px_hat = self._bayes_update(x_t, u_t, sb)
+            x_hat,Px_hat = self._bayes_update(x_t, u_t)
             
             mu_x_list.append(x_hat)
             cov_x_list.append(Px_hat)
             
         return np.array(mu_x_list),np.array(cov_x_list)
+
+
+
+
     
     @override
     def predict(self,x,u):
@@ -438,6 +393,7 @@ class NSIBF(BaseModel,DataExtractor):
                                                           hnet_hidden_layers, fnet_hidden_layers, 
                                                           fnet_hidden_dim, uencoding_layers,uencoding_dim,
                                                           z_activation,l2)
+                                                          
         model.compile(optimizer=optimizer, loss=['mse','mse','mse'], loss_weights=self.loss_weights)
 
         if save_best_only:
@@ -522,6 +478,9 @@ class NSIBF(BaseModel,DataExtractor):
         hidden_dims = []
         hid_dim = max(1,x_dim-interval)
         hidden_dims.append(hid_dim)
+
+
+        #G net in network architecture
         g_dense1 = layers.Dense(hid_dim, activation='relu',name='g_dense1')(x_input)
         for i in range(1,hnet_hidden_layers):
             hid_dim = max(1,x_dim-interval*(i+1))
@@ -535,6 +494,10 @@ class NSIBF(BaseModel,DataExtractor):
         else:
             g_out = layers.Dense(z_dim, activation=z_activation,name='g_output',activity_regularizer=keras.regularizers.l2(l2))(g_dense1)
         g_net = keras.Model(x_input,g_out,name='g_net')
+
+
+
+        #H net in network architecture
          
         h_dense1 = layers.Dense(hidden_dims[len(hidden_dims)-1], activation='relu',name='h_dense1')(z_input)
         for i in range(1,hnet_hidden_layers):
@@ -548,6 +511,10 @@ class NSIBF(BaseModel,DataExtractor):
         else:
             h_out = layers.Dense(x_dim, activation='linear',name='h_output') (h_dense1)
         h_net = keras.Model(z_input,h_out,name='h_net')
+
+
+
+        #F net in network architecture
          
         if uencoding_layers == 1:
             f_uencoding = layers.LSTM(uencoding_dim, return_sequences=False)(u_input)
@@ -564,6 +531,8 @@ class NSIBF(BaseModel,DataExtractor):
             f_dense = layers.Dense(fnet_hidden_dim, activation='relu') (f_dense)
         f_out = layers.Dense(z_dim, activation=z_activation,name='f_output',activity_regularizer=keras.regularizers.l2(l2)) (f_dense)
         f_net = keras.Model([z_input,u_input],f_out,name='f_net')
+
+        
  
         z_output = g_net(x_input)
         x_output = h_net(z_output)

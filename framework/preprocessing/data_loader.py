@@ -1,5 +1,6 @@
 import sys
-sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf/LSTMTestCode')
+#sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf/LSTMTestCode')
+sys.path.append(r'C:\Users\smlin\Documents\GitHub\NSIBF\LSTMTestCode')
 import pandas as pd
 import numpy as np
 import random
@@ -77,13 +78,13 @@ def get_simulation_data():
     return train_df,test_df,signals
     
 def load_wadi_data():
-    z_tr = zipfile.ZipFile(r'/Users/rossm/Documents/GitHub/NSIBF/datasets/WADI/WADI_train.zip', "r")
+    z_tr = zipfile.ZipFile(r'C:/Users/smlin/Documents/GitHub/NSIBF/datasets/WADI/WADI_train.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     train_df=pd.read_csv(f_tr)
     f_tr.close()
     z_tr.close()
     
-    z_tr = zipfile.ZipFile(r'/Users/rossm/Documents/GitHub/NSIBF/datasets/WADI/WADI_test.zip', "r")
+    z_tr = zipfile.ZipFile(r'C:/Users/smlin/Documents/GitHub/NSIBF/datasets/WADI/WADI_test.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     test_df=pd.read_csv(f_tr)
     f_tr.close()
@@ -146,13 +147,13 @@ def load_wadi_data():
     return train_df,val_df,test_df,signals
 
 def load_swat_data():
-    z_tr = zipfile.ZipFile(r'/Users/rossm/Documents/GitHub/NSIBF/datasets/SWAT/SWaT_train.zip', "r")
+    z_tr = zipfile.ZipFile(r'/Users/smlin/Documents/GitHub/NSIBF/datasets/SWAT/SWaT_train.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     train_df=pd.read_csv(f_tr)
     f_tr.close()
     z_tr.close()
     
-    z_tr = zipfile.ZipFile(r'/Users/rossm/Documents/GitHub/NSIBF/datasets/SWAT/SWaT_test.zip', "r")
+    z_tr = zipfile.ZipFile(r'/Users/smlin/Documents/GitHub/NSIBF/datasets/SWAT/SWaT_test.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     test_df=pd.read_csv(f_tr)
     f_tr.close()
