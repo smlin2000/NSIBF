@@ -1,0 +1,337 @@
+PS C:\Users\rossm\Documents\GitHub\OmniAnomaly> python data_preprocess.py SMD
+machine-1-1 train machine-1-1.txt (28479, 38)
+machine-1-1 test machine-1-1.txt (28479, 38)
+machine-1-1 test_label machine-1-1.txt (28479,)
+machine-1-2 train machine-1-2.txt (23694, 38)
+machine-1-2 test machine-1-2.txt (23694, 38)
+machine-1-2 test_label machine-1-2.txt (23694,)
+machine-1-3 train machine-1-3.txt (23702, 38)
+machine-1-3 test machine-1-3.txt (23703, 38)
+machine-1-3 test_label machine-1-3.txt (23703,)
+machine-1-4 train machine-1-4.txt (23706, 38)
+machine-1-4 test machine-1-4.txt (23707, 38)
+machine-1-4 test_label machine-1-4.txt (23707,)
+machine-1-5 train machine-1-5.txt (23705, 38)
+machine-1-5 test machine-1-5.txt (23706, 38)
+machine-1-5 test_label machine-1-5.txt (23706,)
+machine-1-6 train machine-1-6.txt (23688, 38)
+machine-1-6 test machine-1-6.txt (23689, 38)
+machine-1-6 test_label machine-1-6.txt (23689,)
+machine-1-7 train machine-1-7.txt (23697, 38)
+machine-1-7 test machine-1-7.txt (23697, 38)
+machine-1-7 test_label machine-1-7.txt (23697,)
+machine-1-8 train machine-1-8.txt (23698, 38)
+machine-1-8 test machine-1-8.txt (23699, 38)
+machine-1-8 test_label machine-1-8.txt (23699,)
+machine-2-1 train machine-2-1.txt (23693, 38)
+machine-2-1 test machine-2-1.txt (23694, 38)
+machine-2-1 test_label machine-2-1.txt (23694,)
+machine-2-2 train machine-2-2.txt (23699, 38)
+machine-2-2 test machine-2-2.txt (23700, 38)
+machine-2-2 test_label machine-2-2.txt (23700,)
+machine-2-3 train machine-2-3.txt (23688, 38)
+machine-2-3 test machine-2-3.txt (23689, 38)
+machine-2-3 test_label machine-2-3.txt (23689,)
+machine-2-4 train machine-2-4.txt (23689, 38)
+machine-2-4 test machine-2-4.txt (23689, 38)
+machine-2-4 test_label machine-2-4.txt (23689,)
+machine-2-5 train machine-2-5.txt (23688, 38)
+machine-2-5 test machine-2-5.txt (23689, 38)
+machine-2-5 test_label machine-2-5.txt (23689,)
+machine-2-6 train machine-2-6.txt (28743, 38)
+machine-2-6 test machine-2-6.txt (28743, 38)
+machine-2-6 test_label machine-2-6.txt (28743,)
+machine-2-7 train machine-2-7.txt (23696, 38)
+machine-2-7 test machine-2-7.txt (23696, 38)
+machine-2-7 test_label machine-2-7.txt (23696,)
+machine-2-8 train machine-2-8.txt (23702, 38)
+machine-2-8 test machine-2-8.txt (23703, 38)
+machine-2-8 test_label machine-2-8.txt (23703,)
+machine-2-9 train machine-2-9.txt (28722, 38)
+machine-2-9 test machine-2-9.txt (28722, 38)
+machine-2-9 test_label machine-2-9.txt (28722,)
+machine-3-1 train machine-3-1.txt (28700, 38)
+machine-3-1 test machine-3-1.txt (28700, 38)
+machine-3-1 test_label machine-3-1.txt (28700,)
+machine-3-10 train machine-3-10.txt (23692, 38)
+machine-3-10 test machine-3-10.txt (23693, 38)
+machine-3-10 test_label machine-3-10.txt (23693,)
+machine-3-11 train machine-3-11.txt (28695, 38)
+machine-3-11 test machine-3-11.txt (28696, 38)
+machine-3-11 test_label machine-3-11.txt (28696,)
+machine-3-2 train machine-3-2.txt (23702, 38)
+machine-3-2 test machine-3-2.txt (23703, 38)
+machine-3-2 test_label machine-3-2.txt (23703,)
+machine-3-3 train machine-3-3.txt (23703, 38)
+machine-3-3 test machine-3-3.txt (23703, 38)
+machine-3-3 test_label machine-3-3.txt (23703,)
+machine-3-4 train machine-3-4.txt (23687, 38)
+machine-3-4 test machine-3-4.txt (23687, 38)
+machine-3-4 test_label machine-3-4.txt (23687,)
+machine-3-5 train machine-3-5.txt (23690, 38)
+machine-3-5 test machine-3-5.txt (23691, 38)
+machine-3-5 test_label machine-3-5.txt (23691,)
+machine-3-6 train machine-3-6.txt (28726, 38)
+machine-3-6 test machine-3-6.txt (28726, 38)
+machine-3-6 test_label machine-3-6.txt (28726,)
+machine-3-7 train machine-3-7.txt (28705, 38)
+machine-3-7 test machine-3-7.txt (28705, 38)
+machine-3-7 test_label machine-3-7.txt (28705,)
+machine-3-8 train machine-3-8.txt (28703, 38)
+machine-3-8 test machine-3-8.txt (28704, 38)
+machine-3-8 test_label machine-3-8.txt (28704,)
+machine-3-9 train machine-3-9.txt (28713, 38)
+machine-3-9 test machine-3-9.txt (28713, 38)
+machine-3-9 test_label machine-3-9.txt (28713,)
+PS C:\Users\rossm\Documents\GitHub\OmniAnomaly> python main.py
+C:\Users\rossm\Documents\GitHub\OmniAnomaly\omni_anomaly\vae.py:460: DeprecationWarning: invalid escape sequence \*
+  """
+C:\Users\rossm\Documents\GitHub\OmniAnomaly\omni_anomaly\vae.py:501: DeprecationWarning: invalid escape sequence \*
+  """
+C:\Users\rossm\anaconda3\envs\OmniAnomaly\lib\site-packages\tfsnippet\utils\tfver.py:22: DeprecationWarning: Function 'semver.compare' is deprecated. Deprecated since version 2.10.0.  This function will be removed in semver 3. Use the respective 'semver.VersionInfo.compare' instead.
+  compare_result = semver.compare(version, tf.__version__)
+C:\Users\rossm\anaconda3\envs\OmniAnomaly\lib\site-packages\tfsnippet\utils\tfver.py:22: DeprecationWarning: Function 'semver.compare' is deprecated. Deprecated since version 2.10.0.  This function will be removed in semver 3. Use the respective 'semver.VersionInfo.compare' instead.
+  compare_result = semver.compare(version, tf.__version__)
+Configurations
+===========================================
+{'batch_size': 50,
+ 'bf_search_max': 400.0,
+ 'bf_search_min': -400.0,
+ 'bf_search_step_size': 1.0,
+ 'dataset': 'machine-1-1',
+ 'dense_dim': 500,
+ 'early_stop': True,
+ 'get_score_on_dim': False,
+ 'gradient_clip_norm': 10.0,
+ 'initial_lr': 0.001,
+ 'l2_reg': 0.0001,
+ 'level': 0.01,
+ 'lr_anneal_epoch_freq': 40,
+ 'lr_anneal_factor': 0.5,
+ 'lr_anneal_step_freq': None,
+ 'max_epoch': 10,
+ 'max_test_size': None,
+ 'max_train_size': None,
+ 'nf_layers': 20,
+ 'posterior_flow_type': 'nf',
+ 'restore_dir': None,
+ 'result_dir': 'result',
+ 'rnn_cell': 'GRU',
+ 'rnn_num_hidden': 500,
+ 'save_dir': 'model',
+ 'save_z': False,
+ 'std_epsilon': 0.0001,
+ 'test_batch_size': 50,
+ 'test_n_z': 1,
+ 'test_score_filename': 'test_score.pkl',
+ 'test_start': 0,
+ 'train_score_filename': 'train_score.pkl',
+ 'train_start': 0,
+ 'use_connected_z_p': True,
+ 'use_connected_z_q': True,
+ 'valid_step_freq': 100,
+ 'window_length': 100,
+ 'x_dim': 38,
+ 'z_dim': 3}
+
+load data of: machine-1-1
+train:  0 None
+test:  0 None
+Data normalized
+Data normalized
+train set shape:  (28479, 38)
+test set shape:  (28479, 38)
+test set label shape:  (28479,)
+2022-05-15 16:00:47.455282: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+Trainable Parameters                                            (2,607,740 in total)
+------------------------------------------------------------------------------------
+model/q_z_given_x/rnn_q_z/rnn/gru_cell/gates/kernel             (538, 1000)  538,000
+model/q_z_given_x/rnn_q_z/rnn/gru_cell/gates/bias               (1000,)        1,000
+model/q_z_given_x/rnn_q_z/rnn/gru_cell/candidate/kernel         (538, 500)   269,000
+model/q_z_given_x/rnn_q_z/rnn/gru_cell/candidate/bias           (500,)           500
+model/q_z_given_x/rnn_q_z/dense/kernel                          (500, 500)   250,000
+model/q_z_given_x/rnn_q_z/dense/bias                            (500,)           500
+model/q_z_given_x/rnn_q_z/dense_1/kernel                        (500, 500)   250,000
+model/q_z_given_x/rnn_q_z/dense_1/bias                          (500,)           500
+model/vae/variational/z_mean/kernel                             (503, 3)       1,509
+model/vae/variational/z_mean/bias                               (3,)               3
+model/vae/variational/z_std/kernel                              (503, 3)       1,509
+model/vae/variational/z_std/bias                                (3,)               3
+model/posterior_flow/_0/w                                       (1, 3)             3
+model/posterior_flow/_0/b                                       (1,)               1
+model/posterior_flow/_0/u                                       (1, 3)             3
+model/posterior_flow/_1/w                                       (1, 3)             3
+model/posterior_flow/_1/b                                       (1,)               1
+model/posterior_flow/_1/u                                       (1, 3)             3
+model/posterior_flow/_2/w                                       (1, 3)             3
+model/posterior_flow/_2/b                                       (1,)               1
+model/posterior_flow/_2/u                                       (1, 3)             3
+model/posterior_flow/_3/w                                       (1, 3)             3
+model/posterior_flow/_3/b                                       (1,)               1
+model/posterior_flow/_3/u                                       (1, 3)             3
+model/posterior_flow/_4/w                                       (1, 3)             3
+model/posterior_flow/_4/b                                       (1,)               1
+model/posterior_flow/_4/u                                       (1, 3)             3
+model/posterior_flow/_5/w                                       (1, 3)             3
+model/posterior_flow/_5/b                                       (1,)               1
+model/posterior_flow/_5/u                                       (1, 3)             3
+model/posterior_flow/_6/w                                       (1, 3)             3
+model/posterior_flow/_6/b                                       (1,)               1
+model/posterior_flow/_6/u                                       (1, 3)             3
+model/posterior_flow/_7/w                                       (1, 3)             3
+model/posterior_flow/_7/b                                       (1,)               1
+model/posterior_flow/_7/u                                       (1, 3)             3
+model/posterior_flow/_8/w                                       (1, 3)             3
+model/posterior_flow/_8/b                                       (1,)               1
+model/posterior_flow/_8/u                                       (1, 3)             3
+model/posterior_flow/_9/w                                       (1, 3)             3
+model/posterior_flow/_9/b                                       (1,)               1
+model/posterior_flow/_9/u                                       (1, 3)             3
+model/posterior_flow/_10/w                                      (1, 3)             3
+model/posterior_flow/_10/b                                      (1,)               1
+model/posterior_flow/_10/u                                      (1, 3)             3
+model/posterior_flow/_11/w                                      (1, 3)             3
+model/posterior_flow/_11/b                                      (1,)               1
+model/posterior_flow/_11/u                                      (1, 3)             3
+model/posterior_flow/_12/w                                      (1, 3)             3
+model/posterior_flow/_12/b                                      (1,)               1
+model/posterior_flow/_12/u                                      (1, 3)             3
+model/posterior_flow/_13/w                                      (1, 3)             3
+model/posterior_flow/_13/b                                      (1,)               1
+model/posterior_flow/_13/u                                      (1, 3)             3
+model/posterior_flow/_14/w                                      (1, 3)             3
+model/posterior_flow/_14/b                                      (1,)               1
+model/posterior_flow/_14/u                                      (1, 3)             3
+model/posterior_flow/_15/w                                      (1, 3)             3
+model/posterior_flow/_15/b                                      (1,)               1
+model/posterior_flow/_15/u                                      (1, 3)             3
+model/posterior_flow/_16/w                                      (1, 3)             3
+model/posterior_flow/_16/b                                      (1,)               1
+model/posterior_flow/_16/u                                      (1, 3)             3
+model/posterior_flow/_17/w                                      (1, 3)             3
+model/posterior_flow/_17/b                                      (1,)               1
+model/posterior_flow/_17/u                                      (1, 3)             3
+model/posterior_flow/_18/w                                      (1, 3)             3
+model/posterior_flow/_18/b                                      (1,)               1
+model/posterior_flow/_18/u                                      (1, 3)             3
+model/posterior_flow/_19/w                                      (1, 3)             3
+model/posterior_flow/_19/b                                      (1,)               1
+model/posterior_flow/_19/u                                      (1, 3)             3
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/gates/kernel      (503, 1000)  503,000
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/gates/bias        (1000,)        1,000
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/candidate/kernel  (503, 500)   251,500
+model/p_x_given_z/hidden/rnn_p_x/rnn/gru_cell/candidate/bias    (500,)           500
+model/p_x_given_z/hidden/rnn_p_x/dense/kernel                   (500, 500)   250,000
+model/p_x_given_z/hidden/rnn_p_x/dense/bias                     (500,)           500
+model/p_x_given_z/hidden/rnn_p_x/dense_1/kernel                 (500, 500)   250,000
+model/p_x_given_z/hidden/rnn_p_x/dense_1/bias                   (500,)           500
+model/p_x_given_z/x_mean/kernel                                 (500, 38)     19,000
+model/p_x_given_z/x_mean/bias                                   (38,)             38
+model/p_x_given_z/x_std/kernel                                  (500, 38)     19,000
+model/p_x_given_z/x_std/bias                                    (38,)             38
+
+train_values: (19936, 38)
+[Epoch 1/10, Step 100] step time: 1.077s (±5.243s); train time: 55.8s; valid time: 51.9s; loss: 30.8618 (±437.398); valid loss: 14.3873 (*)
+[Epoch 1/10, Step 200] step time: 0.8973s (±4.347s); train time: 46.1s; valid time: 43.65s; loss: -48.1832 (±6.78488); valid loss: -12.5362 (*)
+[Epoch 1/10, Step 300] step time: 0.8478s (±4.259s); train time: 42s; valid time: 42.8s; loss: -52.996 (±6.06055); valid loss: -19.4805 (*)
+train_values: (19936, 38)
+[Epoch 2/10, Step 400, ETA 54m 20.55s] step time: 0.8405s (±4.223s); train time: 1.667s; valid time: 42.44s; loss: -54.6951 (±5.68938); valid loss: -27.9952 (*)
+[Epoch 2/10, Step 500, ETA 51m 56.73s] step time: 0.8402s (±4.232s); train time: 41.5s; valid time: 42.54s; loss: -57.1174 (±5.20861); valid loss: -28.312 (*)
+[Epoch 2/10, Step 600, ETA 49m 51.09s] step time: 0.8371s (±4.215s); train time: 41.37s; valid time: 42.36s; loss: -58.4139 (±5.50325); valid loss: -39.7878 (*)
+[Epoch 2/10, Step 700, ETA 47m 53.38s] step time: 0.8284s (±4.137s); train time: 41.29s; valid time: 41.57s; loss: -58.971 (±5.47958); valid loss: -37.746
+train_values: (19936, 38)
+[Epoch 3/10, Step 800, ETA 46m 7.765s] step time: 0.8368s (±4.218s); train time: 3.31s; valid time: 42.4s; loss: -61.7565 (±5.16115); valid loss: -49.3774 (*)
+[Epoch 3/10, Step 900, ETA 44m 22.71s] step time: 0.8242s (±4.111s); train time: 41.13s; valid time: 41.32s; loss: -61.8617 (±4.92751); valid loss: -45.0028
+[Epoch 3/10, Step 1000, ETA 42m 43.78s] step time: 0.8297s (±4.177s); train time: 41s; valid time: 41.99s; loss: -63.0341 (±4.70198); valid loss: -49.9752 (*)
+[Epoch 3/10, Step 1100, ETA 41m 5.334s] step time: 0.8204s (±4.087s); train time: 41.01s; valid time: 41.05s; loss: -63.1288 (±5.35162); valid loss: -42.4662
+train_values: (19936, 38)
+[Epoch 4/10, Step 1200, ETA 39m 36.18s] step time: 0.8488s (±4.358s); train time: 4.986s; valid time: 43.8s; loss: -63.0512 (±4.30135); valid loss: -53.8727 (*)
+[Epoch 4/10, Step 1300, ETA 38m 14.39s] step time: 0.8818s (±4.438s); train time: 43.62s; valid time: 44.58s; loss: -64.5618 (±3.87757); valid loss: -47.6233
+[Epoch 4/10, Step 1400, ETA 36m 59.17s] step time: 0.9226s (±4.519s); train time: 46.86s; valid time: 45.42s; loss: -65.1809 (±4.98881); valid loss: -48.5587
+[Epoch 4/10, Step 1500, ETA 35m 42.25s] step time: 0.9262s (±4.508s); train time: 47.32s; valid time: 45.33s; loss: -66.9976 (±4.87545); valid loss: -47.1668
+train_values: (19936, 38)
+[Epoch 5/10, Step 1600, ETA 34m 21.45s] step time: 0.9131s (±4.592s); train time: 8.058s; valid time: 46.03s; loss: -65.5485 (±4.6782); valid loss: -48.8426
+[Epoch 5/10, Step 1700, ETA 32m 57.6s] step time: 0.8995s (±4.628s); train time: 43.5s; valid time: 46.48s; loss: -67.0205 (±4.6228); valid loss: -42.1526
+[Epoch 5/10, Step 1800, ETA 31m 38.23s] step time: 0.9425s (±4.651s); train time: 47.51s; valid time: 46.77s; loss: -67.9323 (±4.45691); valid loss: -44.6545
+[Epoch 5/10, Step 1900, ETA 30m 14.25s] step time: 0.9145s (±4.609s); train time: 45.18s; valid time: 46.3s; loss: -68.8756 (±4.43844); valid loss: -41.7111
+train_values: (19936, 38)
+[Epoch 6/10, Step 2000, ETA 28m 51.5s] step time: 0.9346s (±4.61s); train time: 9.38s; valid time: 46.35s; loss: -69.4429 (±4.87552); valid loss: -40.6418
+[Epoch 6/10, Step 2100, ETA 27m 30.22s] step time: 0.9629s (±4.729s); train time: 48.82s; valid time: 47.5s; loss: -69.5541 (±6.56294); valid loss: -37.4423
+[Epoch 6/10, Step 2200, ETA 26m 3.888s] step time: 0.9169s (±4.499s); train time: 46.49s; valid time: 45.23s; loss: -70.381 (±3.84939); valid loss: -26.0285
+[Epoch 6/10, Step 2300, ETA 24m 35.81s] step time: 0.8992s (±4.405s); train time: 45.65s; valid time: 44.29s; loss: -71.9841 (±6.61677); valid loss: -40.0408
+train_values: (19936, 38)
+[Epoch 7/10, Step 2400, ETA 23m 9.487s] step time: 0.9284s (±4.841s); train time: 11.38s; valid time: 48.61s; loss: -69.201 (±6.17804); valid loss: -53.5344
+[Epoch 7/10, Step 2500, ETA 21m 43.2s] step time: 0.9381s (±4.669s); train time: 46.92s; valid time: 46.91s; loss: -69.5925 (±6.93443); valid loss: -57.0996 (*)
+[Epoch 7/10, Step 2600, ETA 20m 13.16s] step time: 0.8776s (±4.296s); train time: 44.6s; valid time: 43.17s; loss: -72.6924 (±6.92921); valid loss: -42.6161
+[Epoch 7/10, Step 2700, ETA 18m 43.18s] step time: 0.8751s (±4.39s); train time: 43.41s; valid time: 44.12s; loss: -74.6154 (±3.10917); valid loss: -47.9095
+train_values: (19936, 38)
+[Epoch 8/10, Step 2800, ETA 17m 13.98s] step time: 0.8897s (±4.392s); train time: 12.5s; valid time: 44.15s; loss: -73.1514 (±4.81763); valid loss: -43.0517
+[Epoch 8/10, Step 2900, ETA 15m 45.21s] step time: 0.9011s (±4.454s); train time: 45.37s; valid time: 44.76s; loss: -75.5222 (±4.97498); valid loss: -63.5424 (*)
+[Epoch 8/10, Step 3000, ETA 14m 14.67s] step time: 0.8488s (±4.23s); train time: 42.38s; valid time: 42.52s; loss: -75.3259 (±4.84047); valid loss: -38.6428
+[Epoch 8/10, Step 3100, ETA 12m 46.01s] step time: 0.9034s (±4.474s); train time: 45.39s; valid time: 44.97s; loss: -75.3882 (±5.87897); valid loss: -35.138
+train_values: (19936, 38)
+[Epoch 9/10, Step 3200, ETA 11m 17.13s] step time: 0.8983s (±4.517s); train time: 14.3s; valid time: 45.4s; loss: -75.0253 (±5.96303); valid loss: -53.841
+[Epoch 9/10, Step 3300, ETA 9m 48.12s] step time: 0.8949s (±4.479s); train time: 44.49s; valid time: 45.02s; loss: -74.4079 (±6.54921); valid loss: -58.3461
+[Epoch 9/10, Step 3400, ETA 8m 18.69s] step time: 0.8717s (±4.336s); train time: 43.62s; valid time: 43.57s; loss: -75.8976 (±3.96177); valid loss: -59.9008
+[Epoch 9/10, Step 3500, ETA 6m 49.07s] step time: 0.8473s (±4.219s); train time: 42.34s; valid time: 42.41s; loss: -75.057 (±4.44847); valid loss: -55.7834
+train_values: (19936, 38)
+[Epoch 10/10, Step 3600, ETA 5m 19.7s] step time: 0.8447s (±4.204s); train time: 15.26s; valid time: 42.26s; loss: -74.7048 (±4.28806); valid loss: -62.5012
+[Epoch 10/10, Step 3700, ETA 3m 50.7s] step time: 0.8604s (±4.34s); train time: 42.45s; valid time: 43.61s; loss: -74.6482 (±4.26641); valid loss: -52.4687
+[Epoch 10/10, Step 3800, ETA 2m 21.85s] step time: 0.8587s (±4.319s); train time: 42.48s; valid time: 43.41s; loss: -75.0109 (±5.74144); valid loss: -63.3657
+[Epoch 10/10, Step 3900, ETA 53.17s] step time: 0.868s (±4.388s); train time: 42.72s; valid time: 44.1s; loss: -75.1025 (±4.1853); valid loss: -57.0346
+INFO:tensorflow:Restoring parameters from C:\Users\rossm\AppData\Local\Temp\tmpcwwymycl\variables.dat-2900
+2022-05-15 16:58:50,136 [INFO] tensorflow: Restoring parameters from C:\Users\rossm\AppData\Local\Temp\tmpcwwymycl\variables.dat-2900
+------------------------------ testing ------------------------------
+search range:  -400.0 400.0
+cur thr:  -399.0 [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  -349.0 [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  -299.0 [0.9985085600516392, 0.999627972471622, 0.9974016295567868, 2687.0, 25685.0, 1.0, 7.0, 122.59754804903902] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  -249.0 [0.9977669978060199, 0.998142641165889, 0.9974016295567868, 2687.0, 25681.0, 5.0, 7.0, 115.79768404631908] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  -199.0 [0.9968415925072557, 0.9962921727983234, 0.9974016295567868, 2687.0, 25676.0, 10.0, 7.0, 115.79768404631908] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  -149.0 [0.9935242994404082, 0.9896869208482986, 0.9974016295567868, 2687.0, 25658.0, 28.0, 7.0, 104.79790404191917] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  -99.0 [0.9826243630434901, 0.9682882847989611, 0.9974016295567868, 2687.0, 25598.0, 88.0, 7.0, 104.79790404191917] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  -49.0 [0.946678100084758, 0.8999665409837184, 0.9985152152987556, 2690.0, 25387.0, 299.0, 4.0, 40.499325011249816] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  1.0 [0.8582302045021767, 0.7516741050455521, 0.9999999962880475, 2694.0, 24796.0, 890.0, 0.0, 3.74995312558593] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0cur thr:  51.0 [0.40948146706714217, 0.257454128194329, 0.9999999962880475, 2694.0, 17916.0, 7770.0, 0.0, 0.7499906251171861] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  101.0 [0.17339096312597815, 0.0949260041948816, 0.9999999962880475, 2694.0, 0.0, 25686.0, 0.0, 0.0] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  151.0 [0.17339096312597815, 0.0949260041948816, 0.9999999962880475, 2694.0, 0.0, 25686.0, 0.0, 0.0] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  201.0 [0.17339096312597815, 0.0949260041948816, 0.9999999962880475, 2694.0, 0.0, 25686.0, 0.0, 0.0] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  251.0 [0.17339096312597815, 0.0949260041948816, 0.9999999962880475, 2694.0, 0.0, 25686.0, 0.0, 0.0] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  301.0 [0.17339096312597815, 0.0949260041948816, 0.9999999962880475, 2694.0, 0.0, 25686.0, 0.0, 0.0] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+cur thr:  351.0 [0.17339096312597815, 0.0949260041948816, 0.9999999962880475, 2694.0, 0.0, 25686.0, 0.0, 0.0] [0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+[0.9986941228779496, 0.9999999962783773, 0.9974016295567868, 2687.0, 25686.0, 0.0, 7.0, 122.59754804903902] -399.0
+Initial threshold : -16.968424
+Number of peaks : 283
+Grimshaw maximum log-likelihood estimation ... [done]
+        γ = 0
+        σ = 69.3035
+        L = 1482.494190055402
+Extreme quantile (probability = 0.001): 142.41314140394357
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 28380/28380 [00:00<00:00, 3153060.70it/s] 
+2247
+28380
+POT result:  (0.7950372617275576, 0.6598089623810703, 0.9999999962880475, 2694.0, 24297.0, 1389.0, 0.0) 16.968426 3.74995312558593
+==============================result==============================
+{'FN': 7.0,
+ 'FP': 0.0,
+ 'TN': 25686.0,
+ 'TP': 2687.0,
+ 'best-f1': 0.9986941228779496,
+ 'best_valid_loss': -63.54240161181203,
+ 'latency': 122.59754804903902,
+ 'pot-FN': 0.0,
+ 'pot-FP': 1389.0,
+ 'pot-TN': 24297.0,
+ 'pot-TP': 2694.0,
+ 'pot-f1': 0.7950372617275576,
+ 'pot-latency': 3.74995312558593,
+ 'pot-precision': 0.6598089623810703,
+ 'pot-recall': 0.9999999962880475,
+ 'pot-threshold': 16.968426,
+ 'precision': 0.9999999962783773,
+ 'pred_time': 0.28044200950944925,
+ 'pred_total_time': 159.410795211792,
+ 'recall': 0.9974016295567868,
+ 'threshold': -399.0,
+ 'train_time': 348.28329210281373,
+ 'valid_time': 0.26096558270622977}
+PS C:\Users\rossm\Documents\GitHub\OmniAnomaly>

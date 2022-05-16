@@ -1,0 +1,320 @@
+%==========================================================================================%
+% Kalman Filter
+%==========================================================================================%
+#Kalman Filtering and NN book
+@book{haykin2004kalman,
+  title={Kalman filtering and neural networks},
+  author={Haykin, Simon},
+  volume={47},
+  year={2004},
+  publisher={John Wiley \& Sons}
+}
+
+#Ensemble Kalman Filter
+@incollection{evensen2002sequential,
+  title={Sequential data assimilation for nonlinear dynamics: the ensemble Kalman filter},
+  author={Evensen, Geir},
+  booktitle={Ocean forecasting},
+  pages={97--116},
+  year={2002},
+  publisher={Springer}
+}
+
+#EKF with Unscented Transform
+@article{luo2009ensemble,
+  title={Ensemble Kalman filter with the unscented transform},
+  author={Luo, X and Moroz, IM},
+  journal={Physica D: Nonlinear Phenomena},
+  volume={238},
+  number={5},
+  pages={549--562},
+  year={2009},
+  publisher={Elsevier}
+}
+
+#Application of UKF and EnKF McKibben pneumatic artificial muscles
+@inproceedings{kodama2017applications,
+  title={Applications of UKF and EnKF to estimation of contraction ratio of McKibben pneumatic artificial muscles},
+  author={Kodama, Takashi and Kogiso, Kiminao},
+  booktitle={2017 American Control Conference (ACC)},
+  pages={5217--5222},
+  year={2017},
+  organization={IEEE}
+}
+
+#Comparison of EnKF with UKF
+@article{hommels2009comparison,
+  title={A comparison of the ensemble Kalman filter with the unscented Kalman filter: application to the construction of a road embankment},
+  author={Hommels, Anneke and Murakami, Akira and Nishimura, Shin-Ichi},
+  journal={Geotechniek},
+  volume={13},
+  number={1},
+  pages={52},
+  year={2009},
+  publisher={Citeseer}
+}
+
+
+%==========================================================================================%
+% Models to be used in paper
+%==========================================================================================%
+
+#NSIBF
+@inproceedings{feng2021time,
+  title={Time series anomaly detection for cyber-physical systems via neural system identification and bayesian filtering},
+  author={Feng, Cheng and Tian, Pengwei},
+  booktitle={Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery \& Data Mining},
+  pages={2858--2867},
+  year={2021}
+}
+
+#Interfusion
+@inproceedings{li2021multivariate,
+  title={Multivariate Time Series Anomaly Detection and Interpretation using Hierarchical Inter-Metric and Temporal Embedding},
+  author={Li, Zhihan and Zhao, Youjian and Han, Jiaqi and Su, Ya and Jiao, Rui and Wen, Xidao and Pei, Dan},
+  booktitle={Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery \& Data Mining},
+  pages={3220--3230},
+  year={2021}
+}
+
+#DAGMM
+@inproceedings{zong2018deep,
+  title={Deep autoencoding gaussian mixture model for unsupervised anomaly detection},
+  author={Zong, Bo and Song, Qi and Min, Martin Renqiang and Cheng, Wei and Lumezanu, Cristian and Cho, Daeki and Chen, Haifeng},
+  booktitle={International conference on learning representations},
+  year={2018}
+}
+
+
+#Isolation Forest
+@inproceedings{liu2008isolation,
+  title={Isolation forest},
+  author={Liu, Fei Tony and Ting, Kai Ming and Zhou, Zhi-Hua},
+  booktitle={2008 eighth ieee international conference on data mining},
+  pages={413--422},
+  year={2008},
+  organization={IEEE}
+}
+
+#USAD
+@inproceedings{audibert2020usad,
+  title={USAD: unsupervised anomaly detection on multivariate time series},
+  author={Audibert, Julien and Michiardi, Pietro and Guyard, Fr{\'e}d{\'e}ric and Marti, S{\'e}bastien and Zuluaga, Maria A},
+  booktitle={Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
+  pages={3395--3404},
+  year={2020}
+}
+
+#OmniAnomaly
+@inproceedings{su2019robust,
+  title={Robust anomaly detection for multivariate time series through stochastic recurrent neural network},
+  author={Su, Ya and Zhao, Youjian and Niu, Chenhao and Liu, Rong and Sun, Wei and Pei, Dan},
+  booktitle={Proceedings of the 25th ACM SIGKDD international conference on knowledge discovery \& data mining},
+  pages={2828--2837},
+  year={2019}
+}
+
+
+#BeatGAN
+@article{liu2022time,
+  title={Time Series Anomaly Detection with Adversarial Reconstruction Networks},
+  author={Liu, Shenghua and Zhou, Bin and Ding, Quan and Hooi, Bryan and bo Zhang, Zheng and Shen, Huawei and Cheng, Xueqi},
+  journal={IEEE Transactions on Knowledge and Data Engineering},
+  year={2022},
+  publisher={IEEE}
+}
+
+
+#FGANomaly
+@article{du2021gan,
+  title={GAN-Based Anomaly Detection for Multivariate Time Series Using Polluted Training Set},
+  author={Du, Bowen and Sun, Xuanxuan and Ye, Junchen and Cheng, Ke and Wang, Jingyuan and Sun, Leilei},
+  journal={IEEE Transactions on Knowledge and Data Engineering},
+  year={2021},
+  publisher={IEEE}
+}
+
+%==========================================================================================%
+% TBD
+%==========================================================================================%
+
+#ANDEA
+@inproceedings{pang2021anomaly,
+  title={Anomaly and Novelty Detection, Explanation, and Accommodation (ANDEA)},
+  author={Pang, Guansong and Li, Jundong and van den Hengel, Anton and Cao, Longbing and Dietterich, Thomas G},
+  booktitle={Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery \& Data Mining},
+  pages={4145--4146},
+  year={2021}
+}
+
+
+#LSTM-Based Encoder-Decoder for multi-sensor Anomaly Detection
+@article{malhotra2016lstm,
+  title={LSTM-based encoder-decoder for multi-sensor anomaly detection},
+  author={Malhotra, Pankaj and Ramakrishnan, Anusha and Anand, Gaurangi and Vig, Lovekesh and Agarwal, Puneet and Shroff, Gautam},
+  journal={arXiv preprint arXiv:1607.00148},
+  year={2016}
+}
+
+#Anomaly detection in CPS using RNN
+@inproceedings{goh2017anomaly,
+  title={Anomaly detection in cyber physical systems using recurrent neural networks},
+  author={Goh, Jonathan and Adepu, Sridhar and Tan, Marcus and Lee, Zi Shan},
+  booktitle={2017 IEEE 18th International Symposium on High Assurance Systems Engineering (HASE)},
+  pages={140--145},
+  year={2017},
+  organization={IEEE}
+}
+
+#Sparse AutoEncoder
+@article{ng2011sparse,
+  title={Sparse autoencoder},
+  author={Ng, Andrew and others},
+  journal={CS294A Lecture notes},
+  volume={72},
+  number={2011},
+  pages={1--19},
+  year={2011}
+}
+
+#Toward explainable deep anomaly detection
+@inproceedings{pang2021toward,
+  title={Toward explainable deep anomaly detection},
+  author={Pang, Guansong and Aggarwal, Charu},
+  booktitle={Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery \& Data Mining},
+  pages={4056--4057},
+  year={2021}
+}
+
+#Reinforment learning from partially labeled anomaly data
+@inproceedings{pang2021toward,
+  title={Toward deep supervised anomaly detection: Reinforcement learning from partially labeled anomaly data},
+  author={Pang, Guansong and van den Hengel, Anton and Shen, Chunhua and Cao, Longbing},
+  booktitle={Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery \& Data Mining},
+  pages={1298--1308},
+  year={2021}
+}
+
+
+#Fourier Transform for Time Series Data
+@inproceedings{park2021fast,
+  title={Fast and Accurate Partial Fourier Transform for Time Series Data},
+  author={Park, Yong-chan and Jang, Jun-Gi and Kang, U},
+  booktitle={Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery \& Data Mining},
+  pages={1309--1318},
+  year={2021}
+}
+
+#Anomaly detection benchmarks from real data
+@inproceedings{emmott2013systematic,
+  title={Systematic construction of anomaly detection benchmarks from real data},
+  author={Emmott, Andrew F and Das, Shubhomoy and Dietterich, Thomas and Fern, Alan and Wong, Weng-Keen},
+  booktitle={Proceedings of the ACM SIGKDD workshop on outlier detection and description},
+  pages={16--21},
+  year={2013}
+}
+
+#Generating insider threat data
+@inproceedings{glasser2013bridging,
+  title={Bridging the gap: A pragmatic approach to generating insider threat data},
+  author={Glasser, Joshua and Lindauer, Brian},
+  booktitle={2013 IEEE Security and Privacy Workshops},
+  pages={98--104},
+  year={2013},
+  organization={IEEE}
+}
+
+#SciForest clustered anomaly detection
+@inproceedings{liu2010detecting,
+  title={On detecting clustered anomalies using sciforest},
+  author={Liu, Fei Tony and Ting, Kai Ming and Zhou, Zhi-Hua},
+  booktitle={Joint European Conference on Machine Learning and Knowledge Discovery in Databases},
+  pages={274--290},
+  year={2010},
+  organization={Springer}
+}
+
+
+#LOF
+@inproceedings{breunig2000lof,
+  title={LOF: identifying density-based local outliers},
+  author={Breunig, Markus M and Kriegel, Hans-Peter and Ng, Raymond T and Sander, J{\"o}rg},
+  booktitle={Proceedings of the 2000 ACM SIGMOD international conference on Management of data},
+  pages={93--104},
+  year={2000}
+}
+
+#LODA
+@article{pevny2016loda,
+  title={Loda: Lightweight on-line detector of anomalies},
+  author={Pevn{\`y}, Tom{\'a}{\v{s}}},
+  journal={Machine Learning},
+  volume={102},
+  number={2},
+  pages={275--304},
+  year={2016},
+  publisher={Springer}
+}
+
+
+#Anomaly detection for weather data quality control
+@inproceedings{zemicheal2019anomaly,
+  title={Anomaly detection in the presence of missing values for weather data quality control},
+  author={Zemicheal, Tadesse and Dietterich, Thomas G},
+  booktitle={Proceedings of the 2nd ACM SIGCAS Conference on Computing and Sustainable Societies},
+  pages={65--73},
+  year={2019}
+}
+
+#Bayesian anomaly detection and classification
+@article{roberts2019bayesian,
+  title={Bayesian anomaly detection and classification},
+  author={Roberts, Ethan and Bassett, Bruce A and Lochner, Michelle},
+  journal={arXiv preprint arXiv:1902.08627},
+  year={2019}
+}
+
+
+#DAEMON
+@inproceedings{chen2021daemon,
+  title={DAEMON: Unsupervised Anomaly Detection and Interpretation for Multivariate Time Series},
+  author={Chen, Xuanhao and Deng, Liwei and Huang, Feiteng and Zhang, Chengwei and Zhang, Zongquan and Zhao, Yan and Zheng, Kai},
+  booktitle={2021 IEEE 37th International Conference on Data Engineering (ICDE)},
+  pages={2225--2230},
+  year={2021},
+  organization={IEEE}
+}
+
+#Deep learning for Anomaly Detection
+@article{pang2021deep,
+  title={Deep learning for anomaly detection: A review},
+  author={Pang, Guansong and Shen, Chunhua and Cao, Longbing and Hengel, Anton Van Den},
+  journal={ACM Computing Surveys (CSUR)},
+  volume={54},
+  number={2},
+  pages={1--38},
+  year={2021},
+  publisher={ACM New York, NY, USA}
+}
+
+
+#Deep Learning Embedding Techniques
+@article{dahouda2021deep,
+  title={A Deep-Learned Embedding Technique for Categorical Features Encoding},
+  author={Dahouda, Mwamba Kasongo and Joe, Inwhee},
+  journal={IEEE Access},
+  volume={9},
+  pages={114381--114391},
+  year={2021},
+  publisher={IEEE}
+}
+
+#Abusive language detection survey
+@article{pamungkas2021towards,
+  title={Towards multidomain and multilingual abusive language detection: a survey},
+  author={Pamungkas, Endang Wahyu and Basile, Valerio and Patti, Viviana},
+  journal={Personal and Ubiquitous Computing},
+  pages={1--27},
+  year={2021},
+  publisher={Springer}
+}

@@ -43,19 +43,51 @@ def load_ecg_dataset():
 
     df=pd.read_csv(r'C:/Users/rossm/Documents/GitHub/test_nsibf/ecg.csv')
 
-    raw_data = df.values
-    # The last element contains the labels
-    labels = raw_data[:, -1]
+    columnTitles = []
+    counter = 0
 
-    # The other data points are the electrocadriogram data
-    data = raw_data[:, 0:-1]
+    for column_name, column_series in df.iloc[:,:-1].iteritems():
+        counter += 1
+        columnTitles.append("Sensor" + str(counter))
+    columnTitles.append("label")
+    df.columns = columnTitles
 
-    train_data, test_data, train_labels, test_labels = train_test_split(
-        data, labels, test_size=0.2, random_state=21
-    )
-    train_data, val_data, train_labels, val_labels = train_test_split(train_data, train_labels, test_size = 0.25, random_state=21)
+
+    train_df = df.copy()
+    train_df = train_df.loc[501:3110, :]
+    test_df = df.copy()
+    test_df = test_df.loc[3111:, :]
+
+    train_df=train_df.fillna(method='ffill')
+    test_df.loc[test_df['label']>=1,'label']=1
+    test_df=test_df.fillna(method='ffill')
+
+    print(len(train_df))
+    # len(train_df)*3%4
+    pos = len(train_df)*3//4
+    # pos = 181440
+    val_df = train_df.loc[pos:,:]
+    val_df = val_df.reset_index(drop=True)
     
-    return train_data, val_data, test_data, train_labels, val_labels, test_labels
+    train_df = train_df.loc[:pos,:]
+    train_df = train_df.reset_index(drop=True)
+
+    return train_df,val_df,test_df
+    #raw_data = df.values
+    ## The last element contains the labels
+    #labels = raw_data[:, -1]
+    #
+    ## The other data points are the electrocadriogram data
+    #data = raw_data[:, 0:-1]
+
+    #train_data, test_data, train_labels, test_labels = train_test_split(
+    #    data, labels, test_size=0.2, random_state=21
+    #)
+    #train_data, val_data, train_labels, val_labels = train_test_split(train_data, train_labels, test_size = 0.25, random_state=21)
+    
+    #return train_data, val_data, test_data, train_labels, val_labels, test_labels
+
+    return
 
 
 def drop_columns(train_df, val_df, test_df):
