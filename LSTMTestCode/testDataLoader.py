@@ -43,7 +43,6 @@ def load_ecg_dataset():
 
     df=pd.read_csv(r'C:/Users/rossm/Documents/GitHub/test_nsibf/ecg.csv')
 
-<<<<<<< Updated upstream
     columnTitles = []
     counter = 0
 
@@ -85,7 +84,6 @@ def load_ecg_dataset():
     #    data, labels, test_size=0.2, random_state=21
     #)
     #train_data, val_data, train_labels, val_labels = train_test_split(train_data, train_labels, test_size = 0.25, random_state=21)
-=======
     raw_data = df.values
     # The last element contains the labels
     labels = raw_data[:, -1]
@@ -97,7 +95,7 @@ def load_ecg_dataset():
         data, labels, test_size=0.2, random_state=21
     )
     train_data, val_data, train_labels, val_labels = train_test_split(train_data, train_labels, test_size = 0.25, shuffle=False)
->>>>>>> Stashed changes
+
     
     #return train_data, val_data, test_data, train_labels, val_labels, test_labels
 

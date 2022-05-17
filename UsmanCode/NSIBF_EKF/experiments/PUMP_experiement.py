@@ -65,7 +65,7 @@ if retrain_model:
     print('optHPCfg',optHPCfg)
     print('bestScore',bestScore)
 else: ## load pretrained model
-    kf = kf.load_model(r'C:/Users/smlin/Documents/GitHub/NSIBF/results/PUMP')
+    kf = kf.load_model('../results/PUMP')
 
 val_df = normalize_and_encode_signals(val_df,signals,scaler='min_max') 
 val_x,val_u,val_y,_ = kf.extract_data(val_df)
@@ -77,7 +77,7 @@ labels[labels>0]=1
 
 ## estimate noise matrices
 kf.estimate_noise(val_x,val_u,val_y)
-z_scores,  z_scores_ekf = kf.score_samples(test_x, test_u,reset_hidden_states=True)
+z_scores, z_scores_ekf = kf.score_samples(test_x, test_u,reset_hidden_states=True)
 # np.savetxt('../results/PUMP/NSIBF_scores',z_scores)
 # z_scores = np.loadtxt('../results/PUMP/NSIBF_scores')
 recon_scores,pred_scores = kf.score_samples_via_residual_error(test_x,test_u)
@@ -97,7 +97,7 @@ print('FN', t[6])
 print()
 
 z_scores_ekf = np.nan_to_num(z_scores_ekf)
-t, th = bf_search(z_scores_ekf, labels[1:],start=0,end=np.percentile(z_scores_ekf,99.9),step_num=10000,display_freq=50,verbose=False)
+t, th = bf_search(z_scores_ekf, labels[1:],start=0,end=np.percentile(z_scores,99.9),step_num=10000,display_freq=50,verbose=False)
 print('NSIBF_ekf')
 print('best-f1', t[0])
 print('precision', t[1])

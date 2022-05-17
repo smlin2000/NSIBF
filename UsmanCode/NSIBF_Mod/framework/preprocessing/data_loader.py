@@ -1,13 +1,9 @@
-import sys
-#sys.path.append(r'C:/Users/rossm/Documents/GitHub/test_nsibf/LSTMTestCode')
-sys.path.append(r'C:\Users\smlin\Documents\GitHub\NSIBF\LSTMTestCode')
 import pandas as pd
 import numpy as np
 import random
 import math
 import zipfile
 from .signals import ContinousSignal,DiscreteSignal,SignalSource
-from LSTMTestCode.testDataLoader import *
 
 
 def _process_model(u, t, noise_std=0.1):
@@ -78,13 +74,13 @@ def get_simulation_data():
     return train_df,test_df,signals
     
 def load_wadi_data():
-    z_tr = zipfile.ZipFile(r'C:/Users/smlin/Documents/GitHub/NSIBF/datasets/WADI/WADI_train.zip', "r")
+    z_tr = zipfile.ZipFile('C:/Users/smlin/Documents/GitHub/NSIBF/UsmanCode/NSIBF_Mod/datasets/WADI/WADI_train.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     train_df=pd.read_csv(f_tr)
     f_tr.close()
     z_tr.close()
     
-    z_tr = zipfile.ZipFile(r'C:/Users/smlin/Documents/GitHub/NSIBF/datasets/WADI/WADI_test.zip', "r")
+    z_tr = zipfile.ZipFile('C:/Users/smlin/Documents/GitHub/NSIBF/UsmanCode/NSIBF_Mod/datasets/WADI/WADI_test.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     test_df=pd.read_csv(f_tr)
     f_tr.close()
@@ -93,9 +89,6 @@ def load_wadi_data():
     train_df=train_df.fillna(method='ffill')
     test_df.loc[test_df['label']>=1,'label']=1
     test_df=test_df.fillna(method='ffill')
-
-    
-
     
     sensors = ['1_AIT_001_PV', '1_AIT_002_PV', '1_AIT_003_PV', '1_AIT_004_PV', 
                '1_AIT_005_PV', '1_FIT_001_PV', '1_LT_001_PV', '2_DPIT_001_PV', 
@@ -130,30 +123,24 @@ def load_wadi_data():
         signals.append( DiscreteSignal(name, SignalSource.controller, isInput=True, isOutput=False, 
                                             values=train_df[name].unique()) )
     
-    print(len(train_df))
-    # len(train_df)*3%4
+    
     pos = len(train_df)*3//4
-    # pos = 181440
     val_df = train_df.loc[pos:,:]
     val_df = val_df.reset_index(drop=True)
     
     train_df = train_df.loc[:pos,:]
     train_df = train_df.reset_index(drop=True)
-
-    #df_to_csv("loadWadiDataVal", val_df)
-    #df_to_csv("loadWadiDataTrain", train_df)
-
-
     return train_df,val_df,test_df,signals
 
+
 def load_swat_data():
-    z_tr = zipfile.ZipFile(r'C:\Users\smlin\Documents\GitHub\NSIBF\UsmanCode\NSIBF_Mod\datasets\SWAT\SWaT_train.zip', "r")
+    z_tr = zipfile.ZipFile(r'C:/Users/smlin/Documents/GitHub/NSIBF/UsmanCode/NSIBF_Mod/datasets/SWAT/SWaT_train.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     train_df=pd.read_csv(f_tr)
     f_tr.close()
     z_tr.close()
     
-    z_tr = zipfile.ZipFile(r'C:\Users\smlin\Documents\GitHub\NSIBF\UsmanCode\NSIBF_Mod\datasets\SWAT\SWaT_test.zip', "r")
+    z_tr = zipfile.ZipFile(r'C:/Users/smlin/Documents/GitHub/NSIBF/UsmanCode/NSIBF_Mod/datasets/SWAT/SWaT_test.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     test_df=pd.read_csv(f_tr)
     f_tr.close()
@@ -191,13 +178,13 @@ def load_swat_data():
 
 def load_pump_data():
     
-    z_tr = zipfile.ZipFile(r'/Users/rossm/Documents/GitHub/NSIBF/datasets/PUMP/PUMP_train.zip', "r")
+    z_tr = zipfile.ZipFile('C:/Users/smlin/Documents/GitHub/NSIBF/UsmanCode/NSIBF_Mod/datasets/PUMP/PUMP_train.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     train_df=pd.read_csv(f_tr)
     f_tr.close()
     z_tr.close()
     
-    z_tr = zipfile.ZipFile(r'/Users/rossm/Documents/GitHub/NSIBF/datasets/PUMP/PUMP_test.zip', "r")
+    z_tr = zipfile.ZipFile('C:/Users/smlin/Documents/GitHub/NSIBF/UsmanCode/NSIBF_Mod/datasets/PUMP/PUMP_test.zip', "r")
     f_tr = z_tr.open(z_tr.namelist()[0])
     test_df=pd.read_csv(f_tr)
     f_tr.close()

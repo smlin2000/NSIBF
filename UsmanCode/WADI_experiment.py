@@ -97,7 +97,7 @@ print('FN', t[6])
 print()
 
 z_scores_ekf = np.nan_to_num(z_scores_ekf)
-t, th = bf_search(z_scores_ekf, labels[1:],start=0,end=np.percentile(z_scores,99.9),step_num=10000,display_freq=50,verbose=False)
+t, th = bf_search(z_scores_ekf, labels[1:],start=0,end=np.percentile(z_scores_ekf,99.9),step_num=10000,display_freq=50,verbose=False)
 print('NSIBF_ekf')
 print('best-f1', t[0])
 print('precision', t[1])
