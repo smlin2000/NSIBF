@@ -72,6 +72,72 @@ def get_simulation_data():
                                                 values=train_df['u'].unique()) )
     
     return train_df,test_df,signals
+
+
+def load_http_data():
+    train_df = pd.read_csv(r'C:\Users\smlin\Documents\GitHub\NSIBF\UsmanCode\NSIBF_EKF\datasets\ASD\ASDTrain.csv', index_col=0)
+    
+    test_df = pd.read_csv(r'C:\Users\smlin\Documents\GitHub\NSIBF\UsmanCode\NSIBF_EKF\datasets\ASD\ASDTest.csv', index_col=0)
+    
+    print(train_df.head(10))
+    print(test_df.head(10))
+    
+    train_df=train_df.fillna(method='ffill')
+    test_df.loc[test_df['label']>=1,'label']=1
+    test_df=test_df.fillna(method='ffill')
+    
+    sensors = []
+    for i in range(0, 19):
+        sensors.append(str(i))
+    
+    signals = []
+    for name in sensors:
+        signals.append( ContinousSignal(name, SignalSource.sensor, isInput=True, isOutput=True, 
+                                        min_value=train_df[name].min(), max_value=train_df[name].max(),
+                                        mean_value=train_df[name].mean(), std_value=train_df[name].std()) )
+    
+    pos = len(train_df)*3//4
+    val_df = train_df.loc[pos:,:]
+    val_df = val_df.reset_index(drop=True)
+    
+    train_df = train_df.loc[:pos,:]
+    train_df = train_df.reset_index(drop=True)
+    
+    
+    return train_df,val_df,test_df,signals
+
+def load_ASD_data():
+    train_df = pd.read_csv(r'C:\Users\smlin\Documents\GitHub\NSIBF\UsmanCode\NSIBF_EKF\datasets\ASD\ASDTrain.csv', index_col=0)
+    
+    test_df = pd.read_csv(r'C:\Users\smlin\Documents\GitHub\NSIBF\UsmanCode\NSIBF_EKF\datasets\ASD\ASDTest.csv', index_col=0)
+    
+    print(train_df.head(10))
+    print(test_df.head(10))
+    
+    train_df=train_df.fillna(method='ffill')
+    test_df.loc[test_df['label']>=1,'label']=1
+    test_df=test_df.fillna(method='ffill')
+    
+    sensors = []
+    for i in range(0, 19):
+        sensors.append(str(i))
+    
+    signals = []
+    for name in sensors:
+        signals.append( ContinousSignal(name, SignalSource.sensor, isInput=True, isOutput=True, 
+                                        min_value=train_df[name].min(), max_value=train_df[name].max(),
+                                        mean_value=train_df[name].mean(), std_value=train_df[name].std()) )
+    
+    pos = len(train_df)*3//4
+    val_df = train_df.loc[pos:,:]
+    val_df = val_df.reset_index(drop=True)
+    
+    train_df = train_df.loc[:pos,:]
+    train_df = train_df.reset_index(drop=True)
+    
+    
+    return train_df,val_df,test_df,signals
+    
     
 def load_wadi_data():
     z_tr = zipfile.ZipFile('C:/Users/smlin/Documents/GitHub/NSIBF/UsmanCode/NSIBF_Mod/datasets/WADI/WADI_train.zip', "r")
